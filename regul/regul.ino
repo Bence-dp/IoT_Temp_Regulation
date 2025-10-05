@@ -3,10 +3,9 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include "model.h"
+#include "globals.h"
 
 
-
-esp_model esp;
 
 // ==== prototypes ====
 void initStaticInfo(esp_model &esp);
@@ -34,8 +33,8 @@ void setup() {
 }
 
 void loop() {
-  int lumValue = loopLum();
-  float tempValue = loopTemp();
+  float lumValue = getLum();
+  float tempValue = getTemp();
   regulation(tempValue, lumValue);
   delay(10000);
 }

@@ -7,7 +7,7 @@ void setupTemp() {
   Serial.println("DS18B20 ready");
 }
 
-float loopTemp() {
+float getTemp() {
   tempSensor.requestTemperatures();
   float t = tempSensor.getTempCByIndex(0);
   Serial.print("Temperature: ");

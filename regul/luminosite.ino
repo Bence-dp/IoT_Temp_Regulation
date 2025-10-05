@@ -4,7 +4,7 @@ void setupLum() {
   Serial.println("Light sensor ready");
 }
 
-int loopLum() {
+float getLum() {
   int sensorValue = analogRead(LUX_PIN);
   Serial.print("Luminosity: ");
   Serial.println(sensorValue);
