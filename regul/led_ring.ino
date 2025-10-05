@@ -15,7 +15,7 @@ void turnOffLedRing() {
   strip.show();
 }
 
-void setColorLedRing(uint32_t color) {
-  for (int i = 0; i < 4; i++) strip.setPixelColor(i, color);
+void setColorLedRing(uint32_t color,int numLEDs) {
+  for (int i = 0; i < numLEDs; i++) strip.setPixelColor(i, color);
   strip.show();
 }
