@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ValidationSchema",
+  "description": "A schema for validating IoT device data",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "object",
+      "properties": {
+        "temperature": { "type": "number" },
+        "light": { "type": "integer" },
+        "regul": { "type": "string", "enum": ["HALT", "RUNNING"] },
+        "fire": { "type": "boolean" },
+        "heat": { "type": "string", "enum": ["ON", "OFF"] },
+        "cold": { "type": "string", "enum": ["ON", "OFF"] },
+        "fanspeed": { "type": "integer" }
+      },
+      "required": ["temperature", "light", "regul", "fire", "heat", "cold", "fanspeed"],
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "room": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "gps": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+            "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+          },
+          "required": ["lat", "lon"],
+          "additionalProperties": false
+        },
+        "address": { "type": "string", "minLength": 1, "maxLength": 200 }
+      },
+      "required": ["room", "gps", "address"],
+      "additionalProperties": false
+    },
+    "regul": {
+      "type": "object",
+      "properties": {
+        "lt": { "type": "number" },
+        "ht": { "type": "number" }
+      },
+      "required": ["lt", "ht"],
+      "additionalProperties": false
+    },
+    "info": {
+      "type": "object",
+      "properties": {
+        "ident": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "user": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "loc": { "type": "string", "minLength": 1, "maxLength": 100 }
+      },
+      "required": ["ident", "user", "loc"],
+      "additionalProperties": false
+    },
+    "net": {
+      "type": "object",
+      "properties": {
+        "uptime": { "type": "string", "pattern": "^[0-9]+$" },
+        "ssid": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "mac": { "type": "string", "pattern": "^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$" },
+        "ip": { "type": "string", "format": "ipv4" }
+      },
+      "required": ["uptime", "ssid", "mac", "ip"],
+      "additionalProperties": false
+    },
+    "reporthost": {
+      "type": "object",
+      "properties": {
+        "target_ip": { "type": "string", "format": "ipv4" },
+        "target_port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "sp": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["target_ip", "target_port", "sp"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["status", "location", "regul", "info", "net", "reporthost"],
+  "additionalProperties": false
+}
