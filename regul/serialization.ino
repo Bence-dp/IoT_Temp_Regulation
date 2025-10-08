@@ -48,6 +48,7 @@ String serialize(esp_model *em) {
 
   // === SERIALIZATION ===
   String output;
-  serializeJsonPretty(doc, output);
+  serializeJson(doc, output);
+  //serializeJsonPretty(doc, output);
   return output;
 }

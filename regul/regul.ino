@@ -36,5 +36,6 @@ void loop() {
   float lumValue = getLum();
   float tempValue = getTemp();
   regulation(tempValue, lumValue);
+  Serial.println(serialize(&esp));
   delay(10000);
 }

@@ -34,15 +34,17 @@ void setDynamicSpeedFan(int initialSpeed, float temp) {
 }
 
 void regulation(float temp, int lum) {
-  Serial.print("Regulation - Temp: ");
-  Serial.print(temp);
-  Serial.print(" | Lum: ");
-  Serial.println(lum);
-  esp.temperature = temp;
-  esp.luminosity = lum;
+  //Serial.print("Regulation - Temp: ");
+  //Serial.print(temp);
+  //Serial.print(" | Lum: ");
+  //Serial.println(lum);
+  //esp.temperature = temp;
+  //esp.luminosity = lum;
 
   if (highThresholdExceeded(temp)) {
+
     startCooling(temp);
+
   }
 
   else if (lowThresholdExceeded(temp)) {
