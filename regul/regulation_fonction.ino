@@ -38,8 +38,8 @@ void regulation(float temp, int lum) {
   //Serial.print(temp);
   //Serial.print(" | Lum: ");
   //Serial.println(lum);
-  //esp.temperature = temp;
-  //esp.luminosity = lum;
+  esp.temperature = temp;
+  esp.luminosity = lum;
 
   if (highThresholdExceeded(temp)) {
 
