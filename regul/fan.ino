@@ -1,4 +1,4 @@
-#define FANPIN 27
+#include "config.h"
 
 void setupFan() {
   pinMode(FANPIN, OUTPUT);

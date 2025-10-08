@@ -1,9 +1,8 @@
-#define SIMPLE_LED1 19
-#define SIMPLE_LED2 21
+#include "config.h"
 
 void setupSimpleLEDS() {
-  pinMode(SIMPLE_LED1, OUTPUT);
-  pinMode(SIMPLE_LED2, OUTPUT);
+  pinMode(SIMPLE_LED_GREEN, OUTPUT);
+  pinMode(SIMPLE_LED_RED, OUTPUT);
 }
 
 void turnOnLed(int led_pin) {

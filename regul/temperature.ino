@@ -1,4 +1,5 @@
-#define ONE_WIRE_BUS 23
+#include "config.h"
+
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature tempSensor(&oneWire);
 

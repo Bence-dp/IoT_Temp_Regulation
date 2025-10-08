@@ -1,4 +1,5 @@
-#define LED_PIN 13
+#include "config.h"
+
 Adafruit_NeoPixel strip(5, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 #define RED   strip.Color(255, 0, 0)

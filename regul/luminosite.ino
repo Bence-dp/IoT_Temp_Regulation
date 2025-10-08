@@ -1,4 +1,4 @@
-#define LUX_PIN A5
+#include "config.h"
 
 void setupLum() {
   Serial.println("Light sensor ready");

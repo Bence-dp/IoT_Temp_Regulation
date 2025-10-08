@@ -1,3 +1,38 @@
+#include "config.h"
+
+bool highThresholdExceeded(float temp){
+  return temp > HIGH_THRESHOLD;
+}
+
+bool lowThresholdExceeded(float temp){
+  return temp < LOW_THRESHOLD;
+}
+
+void startHeating(){
+  setColorLedRing(BLUE, 4);
+  turnOffLed(SIMPLE_LED_GREEN);
+  turnOnLed(SIMPLE_LED_RED);
+  setSpeedFan(0);
+}
+
+void startCooling(float temp){
+  turnOnLed(SIMPLE_LED_GREEN);
+  turnOffLed(SIMPLE_LED_RED);
+  setColorLedRing(RED, 4);
+  setDynamicSpeedFan(128, temp);
+}
+
+void setDynamicSpeedFan(int initialSpeed, float temp) {
+  if (temp > HIGH_THRESHOLD) {
+    int speed = initialSpeed + (int)((temp - HIGH_THRESHOLD) * 16);
+    if (speed > 255) speed = 255;
+    setSpeedFan(speed);
+  }
+  else {
+    setSpeedFan(0);
+  }
+}
+
 void regulation(float temp, int lum) {
   Serial.print("Regulation - Temp: ");
   Serial.print(temp);
@@ -6,23 +41,19 @@ void regulation(float temp, int lum) {
   esp.temperature = temp;
   esp.luminosity = lum;
 
-  // Exemple test
-  if (temp > 30) {
-    turnOnLed(19);
-    turnOffLed(21);
-    setColorLedRing(RED,4);
-    setSpeedFan(255);
-  } 
-  else if (temp > 20) {
-    turnOffLed(21);
-    turnOffLed(19);
-    setColorLedRing(GREEN,4);
-    setSpeedFan(128);
-  } 
+  if (highThresholdExceeded(temp)) {
+    startCooling(temp);
+  }
+
+  else if (lowThresholdExceeded(temp)) {
+    startHeating();
+  }
+
   else {
-    setColorLedRing(BLUE,4);
-    turnOffLed(21);
-    turnOnLed(19);
+    turnOffLed(SIMPLE_LED_GREEN);
+    turnOffLed(SIMPLE_LED_RED);
+    setColorLedRing(GREEN,4);
     setSpeedFan(0);
   }
+
 }
