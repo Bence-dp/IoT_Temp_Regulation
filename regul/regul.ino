@@ -30,12 +30,16 @@ void setup() {
   setupTemp();
   setupFan();
   setupLum();
+  initHistory();
+
 }
 
 void loop() {
   float lumValue = getLum();
   float tempValue = getTemp();
   regulation(tempValue, lumValue);
+  updateHistory(tempValue, lumValue);
+  detectFire(tempValue, lumValue);
   Serial.println(serialize(&esp));
   delay(10000);
 }

@@ -1,6 +1,9 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// Pin pour la led de feu
+#define FIRE_LED_PIN 2  
+
 // Seuil haut et bas de la température
 #define HIGH_THRESHOLD 25
 #define LOW_THRESHOLD 24
@@ -22,5 +25,11 @@
 
 // Pin du capteur de température
 #define ONE_WIRE_BUS 23
+
+//PIN de la led pour le feu
+#define FIRE_LED_PIN 2
+
+//Taille de l'historique des valeurs de temp et lum
+#define HISTORY_SIZE 5
 
 #endif

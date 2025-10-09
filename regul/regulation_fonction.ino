@@ -19,7 +19,9 @@ void startCooling(float temp){
   turnOnLed(SIMPLE_LED_GREEN);
   turnOffLed(SIMPLE_LED_RED);
   setColorLedRing(RED, 4);
-  setDynamicSpeedFan(128, temp);
+  if (!is_fire){
+    setDynamicSpeedFan(128, temp);
+  }
 }
 
 void setDynamicSpeedFan(int initialSpeed, float temp) {
