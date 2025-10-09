@@ -4,9 +4,7 @@
 // Pin pour la led de feu
 #define FIRE_LED_PIN 2  
 
-// Seuil haut et bas de la température
-#define HIGH_THRESHOLD 25
-#define LOW_THRESHOLD 24
+
 
 // Pin de la petite LED verte
 #define SIMPLE_LED_GREEN 19

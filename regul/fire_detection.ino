@@ -40,6 +40,10 @@ bool detectFire(float temp, float lum) {
         is_fire = true;
         esp.fireDetected = true;
         digitalWrite(FIRE_LED_PIN, HIGH);
+        esp.coolerState = false;
+        esp.heaterState = false;
+        turnOffLed(SIMPLE_LED_RED);
+        turnOffLed(SIMPLE_LED_GREEN);
         setSpeedFan(0);
     } else {
         is_fire = false;

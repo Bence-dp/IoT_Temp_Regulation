@@ -1,5 +1,6 @@
 #include "model.h"
 #include "config.h"
+#include "globals.h"
 
 
 void initStaticInfo(esp_model &esp) {

@@ -9,16 +9,20 @@ bool lowThresholdExceeded(float temp){
 }
 
 void startHeating(){
-  setColorLedRing(BLUE, 4);
+  setColorLedRing(BLUE, 5);
   turnOffLed(SIMPLE_LED_GREEN);
   turnOnLed(SIMPLE_LED_RED);
   setSpeedFan(0);
+  esp.coolerState = false;
+  esp.heaterState = true;
 }
 
 void startCooling(float temp){
   turnOnLed(SIMPLE_LED_GREEN);
   turnOffLed(SIMPLE_LED_RED);
-  setColorLedRing(RED, 4);
+  setColorLedRing(RED, 5);
+  esp.coolerState = true;
+  esp.heaterState = false;
   if (!is_fire){
     setDynamicSpeedFan(128, temp);
   }
@@ -45,21 +49,24 @@ void regulation(float temp, int lum) {
   //Serial.println(lum);
   esp.temperature = temp;
   esp.luminosity = lum;
-
   if (highThresholdExceeded(temp)) {
-
+    esp.regulationState = true;
     startCooling(temp);
 
   }
 
   else if (lowThresholdExceeded(temp)) {
+    esp.regulationState = true;
     startHeating();
   }
 
   else {
     turnOffLed(SIMPLE_LED_GREEN);
     turnOffLed(SIMPLE_LED_RED);
-    setColorLedRing(GREEN,4);
+    setColorLedRing(GREEN,5);
+    esp.coolerState = false;
+    esp.heaterState = false;
+    esp.regulationState = true;
     setSpeedFan(0);
   }
 

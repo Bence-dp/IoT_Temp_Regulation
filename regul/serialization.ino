@@ -10,8 +10,8 @@ String serialize(esp_model *em) {
   status["light"] = em->luminosity;
   status["regul"] = em->regulationState ? "RUNNING" : "HALT";
   status["fire"] = em->fireDetected;
-  status["heat"] = em->heaterState ? "ON" : "OFF";
-  status["cold"] = em->coolerState ? "ON" : "OFF";
+  status["heater"] = em->heaterState ? "ON" : "OFF";
+  status["cooler"] = em->coolerState ? "ON" : "OFF";
   status["fanspeed"] = em->fanSpeed;
 
   // === LOCATION SECTION ===
