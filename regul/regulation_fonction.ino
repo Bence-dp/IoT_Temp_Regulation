@@ -22,6 +22,9 @@ void startCooling(float temp){
   if (!is_fire){
     setDynamicSpeedFan(128, temp);
   }
+  else{
+    setSpeedFan(0);
+  }
 }
 
 void setDynamicSpeedFan(int initialSpeed, float temp) {
