@@ -66,7 +66,7 @@ void regulation(float temp, int lum) {
     setColorLedRing(GREEN,5);
     esp.coolerState = false;
     esp.heaterState = false;
-    esp.regulationState = true;
+    esp.regulationState = false;
     setSpeedFan(0);
   }
 

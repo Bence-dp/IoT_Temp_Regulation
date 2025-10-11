@@ -42,6 +42,7 @@ bool detectFire(float temp, float lum) {
         digitalWrite(FIRE_LED_PIN, HIGH);
         esp.coolerState = false;
         esp.heaterState = false;
+        esp.regulationState = false;
         turnOffLed(SIMPLE_LED_RED);
         turnOffLed(SIMPLE_LED_GREEN);
         setSpeedFan(0);

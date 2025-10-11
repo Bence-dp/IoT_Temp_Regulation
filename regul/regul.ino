@@ -41,5 +41,5 @@ void loop() {
   updateHistory(tempValue, lumValue);
   detectFire(tempValue, lumValue);
   Serial.println(serialize(&esp));
-  delay(10000);
+  delay(2000);
 }
