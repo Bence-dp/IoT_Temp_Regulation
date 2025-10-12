@@ -22,9 +22,7 @@ extern float LOW_THRESHOLD;
 extern float lumHistory[HISTORY_SIZE];   // historique luminosité
 extern float tempHistory[HISTORY_SIZE];  // historique température
 
-// === Seuils dynamiques ===
-extern float TEMP_THRESHOLD;   // écart de température
-extern float LUM_THRESHOLD;      // écart de luminosité
+
 
 extern int historyIndex;
 extern float LUM_LOW;       // luminosité minimale feu
