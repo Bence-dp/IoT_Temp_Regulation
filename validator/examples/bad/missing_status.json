@@ -1,0 +1,10 @@
+"location": {
+"room": "Lab 1",
+"gps": { "lat": 48.8566, "lon": 2.3522 },
+"address": "10 Rue de Test"
+},
+"regul": { "lt": 18.5, "ht": 25.0 },
+"info": { "ident": "dev-001", "user": "admin", "loc": "floor1" },
+"net": { "uptime": "12345", "ssid": "net", "mac": "AA:BB:CC:DD:EE:FF", "ip": "192.168.1.10" },
+"reporthost": { "target_ip": "10.0.0.5", "target_port": 8080, "sp": 5 }
+}
