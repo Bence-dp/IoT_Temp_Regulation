@@ -24,8 +24,8 @@ String serialize(esp_model *em) {
 
   // === REGULATION SECTION ===
   JsonObject regul = doc.createNestedObject("regul");
-  regul["lt"] = em->lowThreshold;
-  regul["ht"] = em->highThreshold;
+  regul["lt"] = LOW_THRESHOLD;
+  regul["ht"] = HIGH_THRESHOLD;
 
   // === INFO SECTION ===
   JsonObject info = doc.createNestedObject("info");

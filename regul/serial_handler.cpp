@@ -9,6 +9,7 @@ void setupSerial() {
 void updateFromSerial() {
   if (Serial.available() > 0) {
     String serialData = Serial.readStringUntil('\n');
+    //Serial.print(serialData + "\n");
     serialData.trim(); // Supprimer les espaces et retours chariot
     
     if (serialData.startsWith("ht=")) {
