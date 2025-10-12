@@ -1,7 +1,7 @@
 #include "config.h"
 
 void setupLum() {
-  Serial.println("Light sensor ready");
+  //Serial.println("Light sensor ready");
 }
 
 float getLum() {
