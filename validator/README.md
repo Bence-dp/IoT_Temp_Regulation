@@ -19,7 +19,7 @@ Comment utiliser le script de validation `val.py` fourni dans ce répertoire pou
 python val.py <chemin_vers_fichier_json>
 
 # Exemple (à partir du dossier validator)
-python .\val.py .\examples\jsonExample.json
+python ./val.py ./examples/jsonExample.json
 ```
 
 Sorties et codes de retour :
@@ -50,9 +50,8 @@ Le dossier `examples/` contient :
 Testez rapidement :
 
 ```powershell
-Set-Location -Path "s:\dev\IoT_Temp_Regulation\validator"
-python .\val.py .\examples\jsonExample.json    # devrait afficher "JSON data is valid."
-python .\val.py .\examples\bad\jsonExampleWrong.json  # devrait afficher une erreur
+python ./val.py ./examples/jsonExample.json    # devrait afficher "JSON data is valid."
+python ./val.py ./examples/bad/jsonExampleWrong.json  # devrait afficher une erreur
 ```
 
 ### Dépannage rapide
@@ -68,11 +67,10 @@ Deux façons courantes de lancer la validation :
 1) Se placer dans le dossier `validator` puis lancer :
 
 ```powershell
-python .\val.py .\examples\jsonExample.json
+python ./val.py ./examples/jsonExample.json
 ```
 
 2) Ou
 ```powershell
-Set-Location -Path "s:\dev\IoT_Temp_Regulation\validator"
-python .\val.py .\examples\jsonExample.json
+python ./val.py ./examples/jsonExample.json
 ```
