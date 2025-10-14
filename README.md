@@ -64,4 +64,4 @@ Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port 
     - Infos diverses.
     - Infos réseau.
 - "Tab" Settings pour régler les seuils de température haute et basse, qui seront renvoyés vers l'ESP32. Le seuil de température pour la détection de feu peut également être modifier.
-- Une notification "Fire has been detected !" est affiché lorsque un feu est détecté.
+- Une notification "Fire has been detected !" est affiché lorsqu'un feu est détecté.
