@@ -1,0 +1,8 @@
+{
+"status": { "temperature": 20, "light": 100, "regul": "RUNNING", "fire": false, "heat": "OFF", "cold": "OFF", "fanspeed": 1 },
+"location": { "room": "A", "gps": { "lat": 95.0, "lon": 200.0 }, "address": "Somewhere" },
+"regul": { "lt": 10, "ht": 30 },
+"info": { "ident": "dev-004", "user": "x", "loc": "y" },
+"net": { "uptime": "10", "ssid": "n", "mac": "AA:AA:AA:AA:AA:AA", "ip": "127.0.0.1" },
+"reporthost": { "target_ip": "8.8.8.8", "target_port": 53, "sp": 1 }
+}

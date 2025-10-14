@@ -1,0 +1,15 @@
+{
+"status": {
+"temperature": 22.0,
+"light": 300,
+"regul": "RUNNING",
+"fire": false,
+"heat": "ON",
+"cold": "OFF"
+},
+"location": { "room": "Lab 1", "gps": { "lat": 48.85, "lon": 2.35 }, "address": "10 Rue" },
+"regul": { "lt": 18, "ht": 30 },
+"info": { "ident": "dev-002", "user": "op", "loc": "lab" },
+"net": { "uptime": "1000", "ssid": "wifi", "mac": "00:11:22:33:44:55", "ip": "10.0.0.2" },
+"reporthost": { "target_ip": "10.0.0.6", "target_port": 514, "sp": 1 }
+}
