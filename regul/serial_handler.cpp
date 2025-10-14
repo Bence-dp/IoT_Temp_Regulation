@@ -30,17 +30,14 @@ void processSerialCommand(String command) {
 
   if (command.startsWith("ht=")) {
     HIGH_THRESHOLD = command.substring(3).toFloat();
-
-
-  } else if (command.startsWith("lt=")) {
+  }
+  else if (command.startsWith("lt=")) {
     LOW_THRESHOLD = command.substring(3).toFloat();
-
-
   } 
-  /*
   else if (command.startsWith("temp_fire=")) {
     TEMP_FIRE = command.substring(10).toFloat();
   }
+  /*
   else if (command.startsWith("lum_low=")) {
     LUM_LOW = command.substring(8).toFloat();
   }
