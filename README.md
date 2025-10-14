@@ -11,7 +11,7 @@ TP `Step 1.5 : JSON and Node_RED` pour l'UE "Software components and services fo
 ## Contenu
 
 - `regul/` Répertoire qui contient les fichiers pour le régulateur (la carte ESP32).
-- `validator/` Répertoire qui contient un validateur json. Plus d'informations dans `validator/README.md`.
+- `val/` Répertoire qui contient un validateur json. Plus d'informations dans `val/README.md`.
 - `regul.json` un dashboard Node-RED pour afficher les informations du régulateur ainsi que pour modifier ses réglages.
 - `README.md` ce readme.
 
@@ -27,7 +27,7 @@ Avec le bouton `Upload` compilez et transférez le programme vers l'ESP32.
 
 ### Validateur
 
-Voir `validator/README.md`.
+Voir `val/README.md`.
 
 ### Node-red
 

@@ -15,10 +15,12 @@ Comment utiliser le script de validation `val.py` fourni dans ce répertoire pou
 
 ### Usage
 
-```powershell
+```bash
 python val.py <chemin_vers_fichier_json>
+```
+Exemple :
 
-# Exemple (à partir du dossier validator)
+```bash
 python ./val.py ./examples/jsonExample.json
 ```
 
@@ -45,32 +47,26 @@ Le schéma utilise des contraintes de type, d'énumération et des plages pour l
 Le dossier `examples/` contient :
 
 - `jsonExample.json` — exemple valide
-- `bad/` — plusieurs exemples invalides illustrant différents cas d'erreur
+- `bad/` — répertoire avec plusieurs exemples invalides illustrant différents cas d'erreur
 
 Testez rapidement :
 
-```powershell
+```bash
 python ./val.py ./examples/jsonExample.json    # devrait afficher "JSON data is valid."
 python ./val.py ./examples/bad/jsonExampleWrong.json  # devrait afficher une erreur
 ```
 
 ### Dépannage rapide
 
-- Si vous voyez `Error: Schema file not found at ./schema.json` : exécutez depuis le dossier `validator` ou fournissez le schéma via une modification du script.
+- Si vous voyez `Error: Schema file not found at ./schema.json` : exécutez depuis le dossier `val/` ou fournissez le schéma via une modification du script.
 
 ### Remarque importante sur le répertoire de travail
 
-Le script `val.py` charge le schéma avec `./schema.json` (chemin relatif). Par conséquent, il faut exécuter le script depuis le dossier `validator` ou s'assurer que `schema.json` est accessible depuis le répertoire courant.
+Le script `val.py` charge le schéma avec `./schema.json` (chemin relatif). Par conséquent, il faut exécuter le script depuis le dossier `val/` ou s'assurer que `schema.json` est accessible depuis le répertoire courant.
 
-Deux façons courantes de lancer la validation :
+Se placer dans le dossier `val/` puis lancer :
 
-1) Se placer dans le dossier `validator` puis lancer :
-
-```powershell
-python ./val.py ./examples/jsonExample.json
-```
-
-2) Ou
-```powershell
+```bash
+cd ./val/
 python ./val.py ./examples/jsonExample.json
 ```
