@@ -33,6 +33,8 @@ Voir `validator/README.md`.
 
 Installez `Node-RED` et importez `regul.json`.
 
+Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port de votre ESP32, et pour Baud Rate la valeur 9600.
+
 ## Fonctionnalités implémentées
 
 ### Régulateur (ESP32)
@@ -61,4 +63,4 @@ Installez `Node-RED` et importez `regul.json`.
     - Infos localisation.
     - Infos diverses.
     - Infos réseau.
-- "Tab" Settings pour régler les températures de seuils haut et bas, qui seront renvoyés vers l'ESP32
+- "Tab" Settings pour régler les seuils de température haute et basse, qui seront renvoyés vers l'ESP32. Le seuil de température pour la détection de feu peut également être modifier.
