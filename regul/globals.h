@@ -23,12 +23,9 @@ extern float lumHistory[HISTORY_SIZE];   // historique luminosité
 extern float tempHistory[HISTORY_SIZE];  // historique température
 
 
-
 extern int historyIndex;
 extern float LUM_LOW;       // luminosité minimale feu
 extern float LUM_HIGH;      // luminosité maximale feu
 extern float TEMP_FIRE;   // seuil température feu
-
-
 
 #endif // GLOBALS_H

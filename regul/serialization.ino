@@ -1,6 +1,5 @@
 #include <ArduinoJson.h>
 
-
 String serialize(esp_model *em) {
   StaticJsonDocument<1500> doc;
 

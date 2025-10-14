@@ -4,8 +4,6 @@
 // Pin pour la led de feu
 #define FIRE_LED_PIN 2  
 
-
-
 // Pin de la petite LED verte
 #define SIMPLE_LED_GREEN 19
 

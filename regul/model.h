@@ -41,8 +41,6 @@ struct esp_model {
   int target_sp;
 };
 
-
 void initStaticInfo(esp_model &esp);
-
 
 #endif

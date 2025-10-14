@@ -2,7 +2,6 @@
 #include "config.h"
 #include "globals.h"
 
-
 void initStaticInfo(esp_model &esp) {
   esp.latitude = 43.62453842;
   esp.longitude = 7.050628185;
@@ -19,4 +18,3 @@ void initStaticInfo(esp_model &esp) {
   esp.target_port = 1880;
   esp.target_sp = 2;
 }
-

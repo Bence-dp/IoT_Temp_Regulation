@@ -7,8 +7,8 @@ esp_model esp;
 bool is_fire = false;
 bool is_regulating = false;
 
-float LOW_THRESHOLD = 20.0;
-float HIGH_THRESHOLD = 22.0;
+float LOW_THRESHOLD = 18.0;
+float HIGH_THRESHOLD = 25.0;
 
 // historiques
 float lumHistory[HISTORY_SIZE];
