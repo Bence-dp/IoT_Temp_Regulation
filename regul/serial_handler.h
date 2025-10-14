@@ -9,6 +9,7 @@ extern float sb;
 
 // Déclaration des fonctions
 void updateFromSerial();
+void processSerialCommand(String command);
 void setupSerial();
 
 #endif
