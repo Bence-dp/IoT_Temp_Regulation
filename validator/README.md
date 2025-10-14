@@ -1,6 +1,6 @@
 ## Validator — utilisation de `val.py`
 
-Ce document explique comment utiliser le script de validation `val.py` fourni dans ce répertoire pour valider des fichiers JSON contre le schéma `schema.json`.
+Comment utiliser le script de validation `val.py` fourni dans ce répertoire pour valider des fichiers JSON contre le schéma `schema.json`.
 
 ### Pré-requis
 
