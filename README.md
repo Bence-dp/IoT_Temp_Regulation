@@ -44,9 +44,9 @@ Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port 
 - Régulation de température :
     - Chauffage (représenté par la LED rouge).
     - Climatisation (représenté par la LED verte). 
-    - Ventilation progressive.
+    - Ventilation progressive en fonction de la température.
 - Signalisation du seuil de température sur la bande LEDs (3 seuils/couleurs : bas/bleu, normal/vert, chaud/rouge).
-- Détection d’incendie (si la température moyenne est supérieur au "seuil feu" et si la luminosité est particulièrement élevée (en cas de flammes) ou basse (en cas de fumée sans flammes)). En cas d'incendie, la ventilation s'arrête et la LED 2 s'allume.
+- Détection d’incendie si la température moyenne est supérieur au "seuil feu" (35 C par défaut) et si la luminosité est particulièrement élevée (en cas de flammes) ou basse (en cas de fumée sans flammes). En cas d'incendie, la ventilation s'arrête et la LED 2 s'allume.
 - Modification d’une structure de données "esp" avec les infos nécessaires.
 - Sérialisation en JSON à l'aide d'`ArduinoJson` de Blanchon.
 - Envoi du JSON a Node-RED a travers le port USB.
@@ -64,3 +64,4 @@ Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port 
     - Infos diverses.
     - Infos réseau.
 - "Tab" Settings pour régler les seuils de température haute et basse, qui seront renvoyés vers l'ESP32. Le seuil de température pour la détection de feu peut également être modifier.
+- Une notification "Fire has been detected !" sera affiché si un feu est détecté.
