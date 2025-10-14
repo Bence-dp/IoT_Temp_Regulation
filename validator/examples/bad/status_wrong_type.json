@@ -1,0 +1,16 @@
+{
+"status": {
+"temperature": "22.5",
+"light": 200,
+"regul": "HALT",
+"fire": false,
+"heat": "OFF",
+"cold": "OFF",
+"fanspeed": 3
+},
+"location": { "room": "R1", "gps": { "lat": 48.0, "lon": 2.0 }, "address": "Addr" },
+"regul": { "lt": 15, "ht": 28 },
+"info": { "ident": "dev-003", "user": "u", "loc": "l" },
+"net": { "uptime": "500", "ssid": "s", "mac": "AA:BB:CC:DD:EE:FF", "ip": "192.168.0.5" },
+"reporthost": { "target_ip": "192.168.0.100", "target_port": 9999, "sp": 2 }
+}

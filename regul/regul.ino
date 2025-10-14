@@ -6,17 +6,7 @@
 #include "globals.h"
 #include "serial_handler.h"  // Pour pouvoir changer les réglages via le port série
 
-// ==== Déclaration des fonctions ====
-void initStaticInfo(esp_model &esp);
-void setupSimpleLEDS();
-void setupLED();
-void setupTemp();
-void setupFan();
-void setupLum();
-void regulation(float temp, int lum);
-String serialize(esp_model *em);
-float getLum();
-float getTemp();
+
 
 //================ SETUP ET LOOP ==========================
 
