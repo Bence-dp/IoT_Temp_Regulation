@@ -1,11 +1,13 @@
 #include <Arduino.h>
+#include <WiFi.h>
 #include <Adafruit_NeoPixel.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include "model.h"
 #include "globals.h"
 #include "serial_handler.h"  // Pour pouvoir changer les réglages via le port série
-
+#include "wifi_utils.h"
+#include "wifi_setup.h"
 
 
 
@@ -13,7 +15,11 @@
 
 void setup() {
   // On ouvre la communication avec l'ordinateur
+  
   Serial.begin(9600);
+  Serial.begin(9600); /* Serial connection -----------*/
+  while(!Serial); //wait for a serial connection  
+  bool connectsetup = wifi_setup();
   
   // On prépare notre objet qui stocke toutes les infos
   initStaticInfo(esp);

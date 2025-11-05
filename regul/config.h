@@ -1,6 +1,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+
+// Serial 
+#define USE_SERIAL Serial
+
 // Pin pour la led de feu
 #define FIRE_LED_PIN 2  
 
@@ -27,5 +31,8 @@
 
 //Taille de l'historique des valeurs de temp et lum
 #define HISTORY_SIZE 5
+
+//Hostname de l'ESP
+#define HOST_NAME "ESP32 groupe A"
 
 #endif
