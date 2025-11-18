@@ -28,4 +28,7 @@ extern float LUM_LOW;       // luminosité minimale feu
 extern float LUM_HIGH;      // luminosité maximale feu
 extern float TEMP_FIRE;   // seuil température feu
 
+
+
+
 #endif // GLOBALS_H

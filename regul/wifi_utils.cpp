@@ -45,6 +45,7 @@ void wificonnect_multi(String hostname){
     esp.IP = WiFi.localIP().toString().c_str();
     esp.MAC = WiFi.macAddress().c_str();
     
+    
     wifi_printstatus(0); 
   }
   else

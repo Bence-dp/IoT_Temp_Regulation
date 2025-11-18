@@ -8,10 +8,18 @@
 #include "serial_handler.h"  // Pour pouvoir changer les réglages via le port série
 #include "wifi_utils.h"
 #include "wifi_setup.h"
+#include "routes.h"
+#include <LittleFS.h>
+#include "ESPAsyncWebServer.h"
+#include "AsyncTCP.h"
+#include "FS.h"
+
+
 
 
 
 //================ SETUP ET LOOP ==========================
+AsyncWebServer server(80);
 
 void setup() {
   // On ouvre la communication avec l'ordinateur
@@ -33,6 +41,18 @@ void setup() {
   
   // On prépare la mémoire pour garder l'historique des mesures
   initHistory();
+
+    // Initialize LittleFS
+  if(!LittleFS.begin(true)){
+      Serial.println("An Error has occurred while mounting LittleFS");
+      return;
+  }
+
+  // Setup routes of the ESP Web server
+  setup_http_routes(&server);
+  
+  // Start ESP Web server
+  server.begin();
 }
 
 void loop() {
@@ -53,7 +73,11 @@ void loop() {
   // On vérifie s'il y a un risque d'incendie
   detectFire(temperature, luminosite);
   
+
   // On envoie toutes les infos à l'ordinateur
+  // Update uptime (seconds since boot)
+  unsigned long uptime_seconds = millis() / 1000UL;
+  esp.uptime = String(uptime_seconds);
   Serial.println(serialize(&esp));
   
   // On attend 2 secondes avant de recommencer
