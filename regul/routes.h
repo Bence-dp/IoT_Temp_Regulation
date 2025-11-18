@@ -8,5 +8,6 @@ class AsyncWebServer;
 
 void setup_http_routes(AsyncWebServer* server);
 String processor(const String& var);
+void sendReportNow();
 
 #endif // ROUTES_H

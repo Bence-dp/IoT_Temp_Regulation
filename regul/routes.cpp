@@ -4,10 +4,12 @@
  */
 
 #include "ESPAsyncWebServer.h"
+#include <WiFi.h>
 #include "routes.h"
 #include "FS.h"
 #include <LittleFS.h>
 #include "globals.h"
+#include <HTTPClient.h>
 
 #define USE_SERIAL Serial
 
@@ -52,7 +54,7 @@ void setup_http_routes(AsyncWebServer* server) {
   // to be taken when root is requested
   auto root_handler = server->on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     // https://forum.arduino.cc/t/please-explain-syntax-asyncwebserverrequest-request/1020064/2
-    USE_SERIAL.printf("Root route requested !\n"); 
+    //USE_SERIAL.printf("Root route requested !\n"); 
     /* This handler will download index.html (stored as LittleFS file) and will send it back */
     request->send(LittleFS, "/index.html", String(), false, processor); 
     // cf "Respond with content coming from a File containing templates" section in manual !
@@ -69,7 +71,7 @@ void setup_http_routes(AsyncWebServer* server) {
   
   server->on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
       /* Return current temperature value from esp model */
-      USE_SERIAL.printf("GET /temperature request \n");
+      //USE_SERIAL.printf("GET /temperature request \n");
       request->send(200, "text/plain", String(esp.temperature));
     });
 
@@ -79,8 +81,8 @@ void setup_http_routes(AsyncWebServer* server) {
     });
 
   // Provide full JSON status of the device
-  server->on("/status", HTTP_GET, [](AsyncWebServerRequest *request){
-      USE_SERIAL.println("GET /status request");
+  server->on("/esp", HTTP_POST, [](AsyncWebServerRequest *request){
+      //USE_SERIAL.println("GET /status request");
       // serialize(&esp) is defined in serialization.ino
       request->send(200, "application/json", serialize(&esp));
     });
@@ -119,3 +121,45 @@ void setup_http_routes(AsyncWebServer* server) {
     });
 }
 /*===================================================*/
+void sendReportNow() {
+  static uint32_t tick = 0;
+  if (esp.target_sp == 0) return;
+  if ( millis() - tick < esp.target_sp) { 
+    return; 
+  }
+  //if (esp.target_ip != "")
+  Serial.println("post->>");
+  WiFiClient client;
+  HTTPClient http;
+
+  http.begin(client, "http://192.168.19.211:1880/esp");
+  // http.begin(client, serverName);
+
+  // If you need Node-RED/server authentication, insert user and password below
+  //http.setAuthorization("REPLACE_WITH_SERVER_USERNAME", "REPLACE_WITH_SERVER_PASSWORD");
+  
+  // Specify content-type header
+  http.addHeader("Content-Type", "text/plain");
+  // Data to send with HTTP POST
+  String httpRequestData = serialize(&esp);
+  int httpResponseCode = http.POST(httpRequestData);
+  
+  // If you need an HTTP request with a content type: application/json, use the following:
+  //http.addHeader("Content-Type", "application/json");
+  //int httpResponseCode = http.POST("{\"api_key\":\"tPmAT5Ab3j7F9\",\"sensor\":\"BME280\",\"value1\":\"24.25\",\"value2\":\"49.54\",\"value3\":\"1005.14\"}");
+
+  // If you need an HTTP request with a content type: text/plain
+  //http.addHeader("Content-Type", "text/plain");
+  //int httpResponseCode = http.POST("Hello, World!");
+  
+  Serial.print("HTTP Response code: ");
+  Serial.println(httpResponseCode);
+    
+  // Free resources
+  http.end();
+
+
+//target_ip
+//target_port
+//target_sp
+}

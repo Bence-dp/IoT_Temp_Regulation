@@ -24,8 +24,7 @@ AsyncWebServer server(80);
 void setup() {
   // On ouvre la communication avec l'ordinateur
   
-  Serial.begin(9600);
-  Serial.begin(9600); /* Serial connection -----------*/
+  Serial.begin(9600); 
   while(!Serial); //wait for a serial connection  
   bool connectsetup = wifi_setup();
   
@@ -81,5 +80,6 @@ void loop() {
   Serial.println(serialize(&esp));
   
   // On attend 2 secondes avant de recommencer
+  sendReportNow();
   delay(2000);
 }
