@@ -89,17 +89,7 @@ void setup_http_routes(AsyncWebServer* server) {
 
   // This route allows users to change thresholds values through GET params
   server->on("/set", HTTP_GET, [](AsyncWebServerRequest *request){
-      /* A route with a side effect : this get request has a param and should     
-       *  set a new light_threshold ... used for regulation !
-       */
-      // if (request->hasArg("light_threshold")) { // request may have arguments
-      //   // set luminosity threshold (use global LUM_LOW)
-      //   LUM_LOW = atof(request->arg("light_threshold").c_str());
-      //   request->send_P(200, "text/plain", "Threshold Set !");
-      //   Serial.print("New light threshold: ");
-      //   Serial.println(LUM_LOW);
-      //   return;
-      // }
+
       if (request->hasArg("low_threshold")) {
         // set low temperature threshold
         esp.lowThreshold = atof(request->arg("low_threshold").c_str());
@@ -114,6 +104,13 @@ void setup_http_routes(AsyncWebServer* server) {
         Serial.print("New high temperature threshold: ");
         Serial.println(esp.highThreshold);
       }
+
+
+      //reponse 404 si le parametre n'existe pas
+      // request->send_P(404, "text/plain", "Parameter not found !");
+
+      
+
       /*
       example request:
       http://ip_address/set?light_threshold=300
