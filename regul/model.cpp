@@ -13,5 +13,5 @@ void initStaticInfo(esp_model &esp) {
   esp.uptime = "55";
   esp.target_ip = "127.0.0.1";
   esp.target_port = 1880;
-  esp.target_sp = 2;
+  esp.target_sp = 0;
 }

@@ -92,11 +92,32 @@ void setup_http_routes(AsyncWebServer* server) {
       /* A route with a side effect : this get request has a param and should     
        *  set a new light_threshold ... used for regulation !
        */
-      if (request->hasArg("light_threshold")) { // request may have arguments
-        // set luminosity threshold (use global LUM_LOW)
-        LUM_LOW = atof(request->arg("light_threshold").c_str());
-        request->send_P(200, "text/plain", "Threshold Set !");
+      // if (request->hasArg("light_threshold")) { // request may have arguments
+      //   // set luminosity threshold (use global LUM_LOW)
+      //   LUM_LOW = atof(request->arg("light_threshold").c_str());
+      //   request->send_P(200, "text/plain", "Threshold Set !");
+      //   Serial.print("New light threshold: ");
+      //   Serial.println(LUM_LOW);
+      //   return;
+      // }
+      if (request->hasArg("low_threshold")) {
+        // set low temperature threshold
+        esp.lowThreshold = atof(request->arg("low_threshold").c_str());
+        request->send_P(200, "text/plain", "Low Threshold Set !");
+        Serial.print("New low temperature threshold: ");
+        Serial.println(esp.lowThreshold);
       }
+      if (request->hasArg("high_threshold")) {
+        // set high temperature threshold
+        esp.highThreshold = atof(request->arg("high_threshold").c_str());
+        request->send_P(200, "text/plain", "High Threshold Set !");
+        Serial.print("New high temperature threshold: ");
+        Serial.println(esp.highThreshold);
+      }
+      /*
+      example request:
+      http://ip_address/set?light_threshold=300
+      */
     });
   
   server->on("/target", HTTP_POST, [](AsyncWebServerRequest *request){
@@ -124,36 +145,27 @@ void setup_http_routes(AsyncWebServer* server) {
 void sendReportNow() {
   static uint32_t tick = 0;
   if (esp.target_sp == 0) return;
-  if ( millis() - tick < esp.target_sp) { 
+  if ( millis() - tick < (esp.target_sp * 1000)) { // *1000 on mets en s 
     return; 
   }
   //if (esp.target_ip != "")
-  Serial.println("post->>");
+  //Serial.println("post->>");
   WiFiClient client;
   HTTPClient http;
 
-  http.begin(client, "http://192.168.19.211:1880/esp");
-  // http.begin(client, serverName);
+  String serverName = "http://" + esp.target_ip + ":" + String(esp.target_port) + "/esp";
+  //Serial.println(serverName);
+  http.begin(client, serverName);
+  // http.begin(client, "http://10.214.110.1:1880/esp");
 
-  // If you need Node-RED/server authentication, insert user and password below
-  //http.setAuthorization("REPLACE_WITH_SERVER_USERNAME", "REPLACE_WITH_SERVER_PASSWORD");
-  
-  // Specify content-type header
   http.addHeader("Content-Type", "text/plain");
-  // Data to send with HTTP POST
   String httpRequestData = serialize(&esp);
   int httpResponseCode = http.POST(httpRequestData);
   
-  // If you need an HTTP request with a content type: application/json, use the following:
-  //http.addHeader("Content-Type", "application/json");
-  //int httpResponseCode = http.POST("{\"api_key\":\"tPmAT5Ab3j7F9\",\"sensor\":\"BME280\",\"value1\":\"24.25\",\"value2\":\"49.54\",\"value3\":\"1005.14\"}");
-
-  // If you need an HTTP request with a content type: text/plain
-  //http.addHeader("Content-Type", "text/plain");
-  //int httpResponseCode = http.POST("Hello, World!");
-  
-  Serial.print("HTTP Response code: ");
-  Serial.println(httpResponseCode);
+  if (httpResponseCode != 200) {
+    Serial.print("HTTP Response code: ");
+    Serial.println(httpResponseCode);
+  }
     
   // Free resources
   http.end();
