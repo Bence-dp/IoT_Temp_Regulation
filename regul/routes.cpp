@@ -92,10 +92,31 @@ void setup_http_routes(AsyncWebServer* server) {
       /* A route with a side effect : this get request has a param and should     
        *  set a new light_threshold ... used for regulation !
        */
-      if (request->hasArg("light_threshold")) { // request may have arguments
-        // set luminosity threshold (use global LUM_LOW)
-        LUM_LOW = atof(request->arg("light_threshold").c_str());
-        request->send_P(200, "text/plain", "Threshold Set !");
+      // if (request->hasArg("light_threshold")) { // request may have arguments
+      //   // set luminosity threshold (use global LUM_LOW)
+      //   LUM_LOW = atof(request->arg("light_threshold").c_str());
+      //   request->send_P(200, "text/plain", "Threshold Set !");
+      // }
+      if (request->hasArg("low_threshold")) {
+        // set low temperature threshold
+        esp.lowThreshold = atof(request->arg("low_threshold").c_str());
+        request->send_P(200, "text/plain", "Low Threshold Set !");
+        Serial.print("New low temperature threshold: ");
+        Serial.println(esp.lowThreshold);
+      }
+      if (request->hasArg("high_threshold")) {
+        // set high temperature threshold
+        esp.highThreshold = atof(request->arg("high_threshold").c_str());
+        request->send_P(200, "text/plain", "High Threshold Set !");
+        Serial.print("New high temperature threshold: ");
+        Serial.println(esp.highThreshold);
+      }
+      if (request->hasArg("fire_threshold")) {
+        // set fire temperature threshold
+        TEMP_FIRE = atof(request->arg("fire_threshold").c_str());
+        request->send_P(200, "text/plain", "Fire Threshold Set !");
+        Serial.print("New fire temperarture threshold: ");
+        Serial.println(TEMP_FIRE);
       }
     });
   
@@ -132,8 +153,10 @@ void sendReportNow() {
   WiFiClient client;
   HTTPClient http;
 
-  http.begin(client, "http://192.168.19.211:1880/esp");
-  // http.begin(client, serverName);
+  String serverName = "http://" + esp.target_ip + ":" + String(esp.target_port) + "/esp";
+  //Serial.println(serverName);
+  // http.begin(client, "http://192.168.19.211:1880/esp");
+  http.begin(client, serverName);
 
   // If you need Node-RED/server authentication, insert user and password below
   //http.setAuthorization("REPLACE_WITH_SERVER_USERNAME", "REPLACE_WITH_SERVER_PASSWORD");

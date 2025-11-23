@@ -2,12 +2,12 @@
 
 // Vérifie si la température dépasse le seuil haut
 bool highThresholdExceeded(float temp){
-  return temp > HIGH_THRESHOLD;
+  return temp > esp.highThreshold;
 }
 
 // Vérifie si la température est sous le seuil bas  
 bool lowThresholdExceeded(float temp){
-  return temp < LOW_THRESHOLD;
+  return temp < esp.lowThreshold;
 }
 
 // Mode CHAUFFAGE - il fait trop froid
@@ -39,7 +39,7 @@ void startCooling(float temp){
 
 // Calcule la vitesse du ventilateur selon à quel point il fait chaud
 void setDynamicSpeedFan(int initialSpeed, float temp) {
-  if (temp > HIGH_THRESHOLD) {
+  if (temp > esp.highThreshold) {
     // Plus il fait chaud, plus le ventilateur va vite
     int speed = initialSpeed + (int)((temp - HIGH_THRESHOLD) * 16);
     if (speed > 255) speed = 255;  // Vitesse max = 255

@@ -29,10 +29,10 @@ void processSerialCommand(String command) {
   command.trim();  // Nettoyer espaces
 
   if (command.startsWith("ht=")) {
-    HIGH_THRESHOLD = command.substring(3).toFloat();
+    esp.highThreshold = command.substring(3).toFloat();
   }
   else if (command.startsWith("lt=")) {
-    LOW_THRESHOLD = command.substring(3).toFloat();
+    esp.lowThreshold = command.substring(3).toFloat();
   } 
   else if (command.startsWith("temp_fire=")) {
     TEMP_FIRE = command.substring(10).toFloat();

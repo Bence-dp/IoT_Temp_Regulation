@@ -78,8 +78,9 @@ void loop() {
   unsigned long uptime_seconds = millis() / 1000UL;
   esp.uptime = String(uptime_seconds);
   Serial.println(serialize(&esp));
+
   
-  // On attend 2 secondes avant de recommencer
+  // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer
   sendReportNow();
-  delay(2000);
+  delay(esp.target_sp * 1000);
 }
