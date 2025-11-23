@@ -2,6 +2,7 @@
 #define SERIAL_HANDLER_H
 
 #include <Arduino.h>
+#include "globals.h"
 
 // Déclaration des variables globales externes
 extern float sh;

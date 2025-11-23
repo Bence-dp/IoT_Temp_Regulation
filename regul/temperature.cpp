@@ -1,4 +1,4 @@
-#include "config.h"
+#include "temperature.h"
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature tempSensor(&oneWire);

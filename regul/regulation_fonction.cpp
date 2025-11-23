@@ -1,4 +1,4 @@
-#include "config.h"
+#include "regulation_fonction.h"
 
 // Vérifie si la température dépasse le seuil haut
 bool highThresholdExceeded(float temp){

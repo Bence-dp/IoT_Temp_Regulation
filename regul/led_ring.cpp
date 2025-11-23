@@ -1,12 +1,6 @@
-#include "config.h"
+#include "led_ring.h"
 
-// On crée un ruban de 5 LEDs connecté à la broche LED_PIN
-Adafruit_NeoPixel strip(5, LED_PIN, NEO_GRB + NEO_KHZ800);
-
-// On définit des couleurs faciles à utiliser
-#define RED   strip.Color(255, 0, 0)    // Rouge pur
-#define GREEN strip.Color(0, 255, 0)    // Vert pur  
-#define BLUE  strip.Color(0, 0, 255)    // Bleu pur
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(5, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 void setupLED() {
   strip.begin();           // On démarre le ruban LED

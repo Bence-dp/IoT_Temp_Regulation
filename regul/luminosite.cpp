@@ -1,4 +1,4 @@
-#include "config.h"
+#include "luminosite.h"
 
 void setupLum() {
   //Serial.println("Light sensor ready");

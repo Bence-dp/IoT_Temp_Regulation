@@ -13,9 +13,14 @@
 #include "ESPAsyncWebServer.h"
 #include "AsyncTCP.h"
 #include "FS.h"
-
-
-
+#include "simple_led.h"
+#include "led_ring.h"
+#include "temperature.h"
+#include "fan.h"
+#include "luminosite.h"
+#include "fire_detection.h"
+#include "regulation_fonction.h"
+#include "serialization.h"
 
 
 //================ SETUP ET LOOP ==========================

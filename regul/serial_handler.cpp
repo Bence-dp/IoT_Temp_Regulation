@@ -1,6 +1,4 @@
 #include "serial_handler.h"
-#include "globals.h"
-#include <Arduino.h>
 
 String inputBuffer = "";  // Tampon pour accumuler les caractères reçus
 

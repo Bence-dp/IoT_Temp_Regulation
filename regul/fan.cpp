@@ -1,4 +1,4 @@
-#include "config.h"
+#include "fan.h"
 
 // Prépare le ventilateur pour qu'on puisse le contrôler
 void setupFan() {

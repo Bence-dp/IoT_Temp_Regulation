@@ -1,3 +1,5 @@
+#include "fire_detection.h"
+
 // Prépare la mémoire pour stocker l'historique des mesures
 void initHistory() {
   // Remet tous les historiques à zéro

@@ -3,6 +3,8 @@
 
 #include <WiFi.h> // https://www.arduino.cc/en/Reference/WiFi
 #include <WiFiMulti.h>
+#include "globals.h"
+#include "model.h"
 
 #define WiFiMaxTry 10
 #define SaveDisconnectTime 1000 // Connection may need several tries 

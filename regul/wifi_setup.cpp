@@ -1,6 +1,5 @@
-#include "config.h"
-#include <WiFi.h>
-#include "wifi_utils.h"
+#include "wifi_setup.h"
+
 bool wifi_setup(){
 
 

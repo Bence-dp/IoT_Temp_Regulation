@@ -1,10 +1,7 @@
 /*** Multi Wifi connection
      Fichier wificonnect_multi/wifi_utils.ino ***/
 
-#include <WiFi.h> // https://www.arduino.cc/en/Reference/WiFi
 #include "wifi_utils.h"
-#include "globals.h"
-#include "model.h"
 
 #define USE_SERIAL Serial
 

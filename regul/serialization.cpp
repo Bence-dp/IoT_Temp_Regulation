@@ -1,4 +1,4 @@
-#include <ArduinoJson.h>
+#include "serialization.h"
 
 String serialize(esp_model *em) {
   StaticJsonDocument<1500> doc;

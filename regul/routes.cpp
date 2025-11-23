@@ -1,20 +1,6 @@
-/* 
- * Auteur : G.Menez
- * Fichier : http_as_serverasync_littlefs/routes.ino 
- */
-
-#include "ESPAsyncWebServer.h"
-#include <WiFi.h>
 #include "routes.h"
-#include "FS.h"
-#include <LittleFS.h>
-#include "globals.h"
-#include <HTTPClient.h>
 
 #define USE_SERIAL Serial
-
-// forward declaration of serializer (defined in serialization.ino)
-String serialize(esp_model *em);
 
 /*===================================================*/
 String processor(const String & var){

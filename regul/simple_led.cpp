@@ -1,4 +1,4 @@
-#include "config.h"
+#include "simple_led.h"
 
 // Prépare les deux petites LEDs pour qu'elles puissent s'allumer
 void setupSimpleLEDS() {
