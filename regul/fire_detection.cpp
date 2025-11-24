@@ -50,10 +50,10 @@ bool detectFire(float temp, float lum) {
     float avgTemp = averageValid(tempHistory);
 
     // Conditions pour détecter un feu :
-    bool tempHigh = (avgTemp > TEMP_FIRE);           // Température trop élevée
+    bool tempHigh = (avgTemp > TEMP_FIRE);  // Température trop élevée
     bool lumExtreme = (lum < LUM_LOW || lum > LUM_HIGH);  // Luminosité anormale
 
-    // Si les deux conditions sont réunies → ALARME INCENDIE
+    // Si les deux conditions sont réunies -> ALARME INCENDIE
     if (tempHigh && lumExtreme) {
         is_fire = true;
         esp.fireDetected = true;

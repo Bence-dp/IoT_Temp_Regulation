@@ -3,9 +3,9 @@
 
 #include <Arduino.h>
 #include "config.h"
+#include "fan.h"
 #include "globals.h"
 #include "simple_led.h"
-#include "fan.h"
 
 void initHistory();
 float averageValid(float *arr);

@@ -1,8 +1,6 @@
 #include "wifi_setup.h"
 
 bool wifi_setup(){
-
-
   /* Connection from a list of SSID */
   wificonnect_multi(HOST_NAME);               
   

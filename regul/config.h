@@ -1,7 +1,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-
 // Serial 
 #define USE_SERIAL Serial
 
@@ -26,13 +25,13 @@
 // Pin du capteur de température
 #define ONE_WIRE_BUS 23
 
-//PIN de la led pour le feu
+// Pin de la led pour le feu
 #define FIRE_LED_PIN 2
 
-//Taille de l'historique des valeurs de temp et lum
+// Taille de l'historique des valeurs de temp et lum
 #define HISTORY_SIZE 5
 
-//Hostname de l'ESP
+// Hostname de l'ESP
 #define HOST_NAME "ESP32 groupe A"
 
 #endif

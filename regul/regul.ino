@@ -1,34 +1,34 @@
 #include <Arduino.h>
-#include <WiFi.h>
 #include <Adafruit_NeoPixel.h>
-#include <OneWire.h>
+#include "AsyncTCP.h"
 #include <DallasTemperature.h>
-#include "model.h"
+#include "ESPAsyncWebServer.h"
+#include "FS.h"
+#include <OneWire.h>
+#include <LittleFS.h>
+#include <WiFi.h>
+
+#include "fan.h"
+#include "fire_detection.h"
 #include "globals.h"
-#include "serial_handler.h"  // Pour pouvoir changer les réglages via le port série
+#include "led_ring.h"
+#include "luminosite.h"
+#include "model.h"
+#include "regulation_fonction.h"
+#include "routes.h"
+#include "serial_handler.h"
+#include "serialization.h"
+#include "simple_led.h"
+#include "temperature.h"
 #include "wifi_utils.h"
 #include "wifi_setup.h"
-#include "routes.h"
-#include <LittleFS.h>
-#include "ESPAsyncWebServer.h"
-#include "AsyncTCP.h"
-#include "FS.h"
-#include "simple_led.h"
-#include "led_ring.h"
-#include "temperature.h"
-#include "fan.h"
-#include "luminosite.h"
-#include "fire_detection.h"
-#include "regulation_fonction.h"
-#include "serialization.h"
 
+AsyncWebServer server(80);
 
 //================ SETUP ET LOOP ==========================
-AsyncWebServer server(80);
 
 void setup() {
   // On ouvre la communication avec l'ordinateur
-  
   Serial.begin(9600); 
   while(!Serial); //wait for a serial connection  
   bool connectsetup = wifi_setup();
@@ -46,10 +46,10 @@ void setup() {
   // On prépare la mémoire pour garder l'historique des mesures
   initHistory();
 
-    // Initialize LittleFS
+  // Initialize LittleFS
   if(!LittleFS.begin(true)){
-      Serial.println("An Error has occurred while mounting LittleFS");
-      return;
+    Serial.println("An Error has occurred while mounting LittleFS");
+    return;
   }
 
   // Setup routes of the ESP Web server
@@ -60,8 +60,7 @@ void setup() {
 }
 
 void loop() {
-  // D'abord, on vérifie si l'utilisateur a envoyé des commandes
-  // (comme changer les températures de seuil)
+  // D'abord, on vérifie si l'utilisateur a envoyé des commandes via Serial
   updateFromSerial();
 
   // On lit les capteurs
@@ -77,14 +76,13 @@ void loop() {
   // On vérifie s'il y a un risque d'incendie
   detectFire(temperature, luminosite);
   
-
-  // On envoie toutes les infos à l'ordinateur
   // Update uptime (seconds since boot)
   unsigned long uptime_seconds = millis() / 1000UL;
   esp.uptime = String(uptime_seconds);
+
+  // On envoie toutes les infos à l'ordinateur
   Serial.println(serialize(&esp));
 
-  
   // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer
   sendReportNow();
   delay(esp.target_sp * 1000);

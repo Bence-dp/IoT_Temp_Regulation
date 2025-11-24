@@ -2,8 +2,8 @@
 #define GLOBALS_H
 
 #include <Arduino.h>
-#include "model.h"
 #include "config.h"
+#include "model.h"
 
 // === Variables globales accessibles partout ===
 
@@ -14,21 +14,17 @@ extern esp_model esp;
 extern bool is_fire;
 extern bool is_regulating;
 
-// Seuil haut et bas de la température
-extern float HIGH_THRESHOLD;
+// seuil haut et bas de la température
 extern float LOW_THRESHOLD;
+extern float HIGH_THRESHOLD;
 
-// === Historique ===
-extern float lumHistory[HISTORY_SIZE];   // historique luminosité
+// historiques
+extern float lumHistory[HISTORY_SIZE];  // historique luminosité
 extern float tempHistory[HISTORY_SIZE];  // historique température
+extern int historyIndex;  // index global
 
+extern float LUM_LOW;  // luminosité minimale feu
+extern float LUM_HIGH;  // luminosité maximale feu
+extern float TEMP_FIRE;  // seuil température feu
 
-extern int historyIndex;
-extern float LUM_LOW;       // luminosité minimale feu
-extern float LUM_HIGH;      // luminosité maximale feu
-extern float TEMP_FIRE;   // seuil température feu
-
-
-
-
-#endif // GLOBALS_H
+#endif

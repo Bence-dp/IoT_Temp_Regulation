@@ -29,10 +29,9 @@ void startCooling(float temp){
   esp.heaterState = false;       // Marque que le chauffage est OFF
   
   // Si pas d'incendie, on ventile selon la température
-  if (!is_fire){
+  if (!is_fire) {
     setDynamicSpeedFan(128, temp);  // Ventile à vitesse adaptée
-  }
-  else{
+  } else{
     setSpeedFan(0);  // En cas d'incendie, on arrête tout
   }
 }
@@ -44,8 +43,7 @@ void setDynamicSpeedFan(int initialSpeed, float temp) {
     int speed = initialSpeed + (int)((temp - HIGH_THRESHOLD) * 16);
     if (speed > 255) speed = 255;  // Vitesse max = 255
     setSpeedFan(speed);
-  }
-  else {
+  } else {
     setSpeedFan(0);  // Si c'est redevenu normal, on arrête
   }
 }

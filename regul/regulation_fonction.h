@@ -3,9 +3,9 @@
 
 #include <Arduino.h>
 #include "config.h"
+#include "fan.h"
 #include "globals.h"
 #include "led_ring.h"
-#include "fan.h"
 #include "simple_led.h"
 
 bool highThresholdExceeded(float temp);
