@@ -22,6 +22,7 @@
 #include "temperature.h"
 #include "wifi_utils.h"
 #include "wifi_setup.h"
+#include "mqtt_full.h"
 
 AsyncWebServer server(80);
 
@@ -57,6 +58,11 @@ void setup() {
   
   // Start ESP Web server
   server.begin();
+  mqtt_setup();
+  // Try to connect and subscribe to topics right after setup
+  mqtt_subscribe_mytopics();
+
+  mqtt_setup();
 }
 
 void loop() {
@@ -85,5 +91,22 @@ void loop() {
 
   // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer
   sendReportNow();
+
+  // Ensure MQTT is connected and process network events
+  if (!mqttclient.connected()) {
+    // try to (re)connect and subscribe
+    mqtt_subscribe_mytopics();
+  } else {
+    // let the client maintain keepalive and process callbacks
+    mqttclient.loop();
+  }
+
+  mqttclient.setBufferSize(2048);
+  bool published = mqttclient.publish(MQTT_TOPIC, serialize(&esp).c_str());
+  if (published) {
+    Serial.println("Sent to MQTT");
+  } else {
+    Serial.println("MQTT publish failed");
+  }
   delay(esp.target_sp * 1000);
 }
