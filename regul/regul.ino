@@ -14,6 +14,7 @@
 #include "led_ring.h"
 #include "luminosite.h"
 #include "model.h"
+#include "mqtt_full.h"
 #include "regulation_fonction.h"
 #include "routes.h"
 #include "serial_handler.h"
@@ -57,6 +58,9 @@ void setup() {
   
   // Start ESP Web server
   server.begin();
+
+  // setup the MQTT
+  mqtt_setup();
 }
 
 void loop() {
@@ -80,10 +84,22 @@ void loop() {
   unsigned long uptime_seconds = millis() / 1000UL;
   esp.uptime = String(uptime_seconds);
 
+  String payload = serialize(&esp);
+
   // On envoie toutes les infos à l'ordinateur
-  Serial.println(serialize(&esp));
+  Serial.println(payload);
+
+  // On envoie toutes les infos via HTTP
+  sendReportNow(payload);
+
+  // On envoie toutes les infos via MQTT
+  /*--- Publish payload on MQTT_TOPIC  */
+  mqttclient.setBufferSize(2048);
+  mqttclient.publish(MQTT_TOPIC, payload.c_str());
+  Serial.println("Sent to MQTT");
+  // /* Process MQTT ... une fois par loop() ! */
+  // mqttclient.loop(); // Process MQTT event/action
 
   // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer
-  sendReportNow();
   delay(esp.target_sp * 1000);
 }

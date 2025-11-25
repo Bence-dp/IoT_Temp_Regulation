@@ -132,7 +132,7 @@ void setup_http_routes(AsyncWebServer* server) {
 /*
  * Envoi les données au serveur par une requete http post
  */
-void sendReportNow() {
+void sendReportNow(String payload) {
   static uint32_t tick = 0;
   if (esp.target_sp == 0) return;
   if ( millis() - tick < esp.target_sp) { 
@@ -149,11 +149,11 @@ void sendReportNow() {
   // Specify content-type header
   http.addHeader("Content-Type", "text/plain");
 
-  // Data to send with HTTP POST
-  String httpRequestData = serialize(&esp);
+  // // Data to send with HTTP POST
+  // String httpRequestData = serialize(&esp);
   
   Serial.println("HTTP POST request sent.");
-  int httpResponseCode = http.POST(httpRequestData);
+  int httpResponseCode = http.POST(payload);
   
   Serial.print("HTTP Response code : ");
   Serial.println(httpResponseCode);
