@@ -123,43 +123,28 @@ void setup_http_routes(AsyncWebServer* server) {
 /*===================================================*/
 void sendReportNow() {
   static uint32_t tick = 0;
-  if (esp.target_sp == 0) return;
-  if ( millis() - tick < esp.target_sp) { 
+  //if (esp.target_sp == 0) return;
+/*   if ( millis() - tick < esp.target_sp) { 
     return; 
-  }
-  //if (esp.target_ip != "")
+  } */
+  //if (esp.target_ip != ""/*  */)
   Serial.println("post->>");
   WiFiClient client;
   HTTPClient http;
+  Serial.println("http://"+esp.target_ip+":"+esp.target_port+"/esp");
 
-  http.begin(client, "http://192.168.19.211:1880/esp");
-  // http.begin(client, serverName);
+  http.begin(client, String("http://192.168.19.211:1880/esp"));
 
-  // If you need Node-RED/server authentication, insert user and password below
-  //http.setAuthorization("REPLACE_WITH_SERVER_USERNAME", "REPLACE_WITH_SERVER_PASSWORD");
-  
-  // Specify content-type header
   http.addHeader("Content-Type", "text/plain");
   // Data to send with HTTP POST
   String httpRequestData = serialize(&esp);
   int httpResponseCode = http.POST(httpRequestData);
   
-  // If you need an HTTP request with a content type: application/json, use the following:
-  //http.addHeader("Content-Type", "application/json");
-  //int httpResponseCode = http.POST("{\"api_key\":\"tPmAT5Ab3j7F9\",\"sensor\":\"BME280\",\"value1\":\"24.25\",\"value2\":\"49.54\",\"value3\":\"1005.14\"}");
 
-  // If you need an HTTP request with a content type: text/plain
-  //http.addHeader("Content-Type", "text/plain");
-  //int httpResponseCode = http.POST("Hello, World!");
-  
   Serial.print("HTTP Response code: ");
   Serial.println(httpResponseCode);
     
   // Free resources
   http.end();
 
-
-//target_ip
-//target_port
-//target_sp
 }
