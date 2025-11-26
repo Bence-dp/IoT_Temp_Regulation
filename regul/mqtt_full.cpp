@@ -8,31 +8,22 @@
   mosquitto_pub  -h test.mosquitto.org -t "uca/M1/iot/led" -m "{\"led\" : \"ON\"}" -q 1
   mosquitto_sub  -h test.mosquitto.org -t "uca/M1/iot/temp"  -q 1
 *********/
+
 #include "mqtt_full.h"
-
-
-
-/*============= GPIO ==============*/
-
-#define MQTT_HOST IPAddress(192, 168, 19, XXX)
 
 /*===== MQTT broker/server ========*/
 //const char* mqtt_server = "192.168.1.101"; 
 //const char* mqtt_server = "public.cloud.shiftr.io"; // Failed in 2021
 // need login and passwd (public,public) mqtt://public:public@public.cloud.shiftr.io
-//const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
-const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
+const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
+// const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
 //const char* mqtt_server = "mqtt.eclipseprojects.io"; // anynomous Ok in 2021
-/*===== MQTT TOPICS ===============*/
-/* #define TOPIC_TEMP "uca/M1/iot/temp"
-#define TOPIC_LED  "uca/M1/iot/led" */
+
 /*===== ESP is a MQTT Client =======*/
-WiFiClient espClient;           // Wifi 
+WiFiClient espClient;               // Wifi 
 PubSubClient mqttclient(espClient); // MQTT client
 
-#define USE_SERIAL Serial
-
-/*===== Arduino IDE paradigm : setup+loop =====*/
+/*===== MQTT client setup =====*/
 void mqtt_setup() {
   // set server of our MQTT client
   mqttclient.setServer(mqtt_server, 1883);
@@ -40,15 +31,11 @@ void mqtt_setup() {
   mqttclient.setCallback(mqtt_pubcallback); 
 }
 
-
-
 /*============== CALLBACK ===================*/
-void mqtt_pubcallback(char* topic, 
-                      byte* payload, 
-                      unsigned int length) {
-  /* 
-   * Callback when a message is published on a subscribed topic.
-   */
+/* 
+ * Callback when a message is published on a subscribed topic.
+ */
+void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
   USE_SERIAL.print("Message arrived on topic : ");
   USE_SERIAL.println(topic);
   USE_SERIAL.print("=> ");
@@ -102,10 +89,11 @@ void mqtt_subscribe_mytopics() {
     // Create a client ID from MAC address .. should be unique ascii string and different from all other devices using the broker !
     String mqttclientId = "ESP32-";
     mqttclientId += WiFi.macAddress(); // if we need random : String(random(0xffff), HEX);
-    if (mqttclient.connect(mqttclientId.c_str(), // Mqttclient Id when connecting to the server : 8-12 alphanumeric character ASCII
-			   NULL,   /* No credential */ 
-			   NULL))
-      {
+    if (mqttclient.connect(
+          mqttclientId.c_str(), // Mqttclient Id when connecting to the server : 8-12 alphanumeric character ASCII
+			    NULL,   /* No credential */ 
+			    NULL
+        )){
       USE_SERIAL.println("connected");
 	        
       // THEN Subscribe topics
@@ -120,7 +108,3 @@ void mqtt_subscribe_mytopics() {
     }
   } // end while
 }
-
-/*================= LOOP ======================*/
-
-
