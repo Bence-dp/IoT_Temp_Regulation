@@ -14,4 +14,6 @@ void initStaticInfo(esp_model &esp) {
   esp.target_ip = "127.0.0.1";
   esp.target_port = 1880;
   esp.target_sp = 2;
+  esp.occuped = false;
+  esp.hotspot - false;
 }

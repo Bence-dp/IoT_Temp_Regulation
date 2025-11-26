@@ -1,0 +1,361 @@
+[
+    {
+        "id": "0d15b1eb48c222ce",
+        "type": "tab",
+        "label": "Swimming Pools",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b1c70c806e538fd6",
+        "type": "inject",
+        "z": "0d15b1eb48c222ce",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "f405bf04b34b99ce"
+            ]
+        ]
+    },
+    {
+        "id": "f405bf04b34b99ce",
+        "type": "function",
+        "z": "0d15b1eb48c222ce",
+        "name": "Téléportation",
+        "func": "// create random position\nvar lat = 43.61999752 + Math.random() * 0.1;\nvar lon = 7.0499998 + Math.random() * 0.1;\nmsg.payload={\n    lat:lat, \n    lon:lon, \n    name:\"Gilles\", \n    description: \"Temperature in my swimming pool\",\n    value: 20.5,\n    unit: \"°C\",\n    icon:\"male\", \n    color:\"#000\"};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "0f94af908bc53d5b",
+                "3e992f969c91f095",
+                "ff9c57be5cd5590c"
+            ]
+        ]
+    },
+    {
+        "id": "c16d1753c46428dc",
+        "type": "ui_button",
+        "z": "0d15b1eb48c222ce",
+        "name": "",
+        "group": "44825176ad0d422c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Move Gilles",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-male",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "f405bf04b34b99ce"
+            ]
+        ]
+    },
+    {
+        "id": "98f0826451331727",
+        "type": "mqtt in",
+        "z": "0d15b1eb48c222ce",
+        "name": "",
+        "topic": "uca/iot/master",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "86908dabf911a304",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "07a18a076cb05b0e",
+                "ca3638e68c140e02"
+            ]
+        ]
+    },
+    {
+        "id": "ff9c57be5cd5590c",
+        "type": "debug",
+        "z": "0d15b1eb48c222ce",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "07a18a076cb05b0e",
+        "type": "json",
+        "z": "0d15b1eb48c222ce",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 372,
+        "y": 419,
+        "wires": [
+            [
+                "f6ee11f246267cfb"
+            ]
+        ]
+    },
+    {
+        "id": "d7c4f25639ade2eb",
+        "type": "ui_button",
+        "z": "0d15b1eb48c222ce",
+        "name": "",
+        "group": "44825176ad0d422c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "25642c0ef06a812b"
+            ]
+        ]
+    },
+    {
+        "id": "25642c0ef06a812b",
+        "type": "function",
+        "z": "0d15b1eb48c222ce",
+        "name": "Reset Layer",
+        "func": "// clear the \"by default\" layer \nmsg.payload = {\"command\": { \"clear\": \"unknown\" } };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 340,
+        "wires": [
+            [
+                "3e992f969c91f095"
+            ]
+        ]
+    },
+    {
+        "id": "f6ee11f246267cfb",
+        "type": "function",
+        "z": "0d15b1eb48c222ce",
+        "name": "json adapt",
+        "func": "/* \n* Ce node permet d'adapter le format json produit \n* par l'ESP à celui attendu par la map \n*/\n\n//http://stevesnoderedguide.com/node-red-functions\nvar nmsg = { // on cree un nouveau message nodered\n    topic: msg.topic  // on garde le vieux topic\n    };\n\n// Gestion de l'occupation\nvar busy;\n/*\nif (msg.payload.piscine.occuped === false)\n  busy = \"battery-empty\";\nelse\n  busy = \"battery-full\";\n*/\nbusy = \"battery-full\";\n\nvar hsc;\nif (msg.payload.piscine.hotspot === false)\n  hsc = \"Blue\";\nelse\n  hsc = \"Red\";\n\nnmsg.payload = { // on modifie/adapte la payload\n    layer : \"swimming pools\",\n    name : msg.payload.info.ident,\n    description: msg.payload.info.user,\n    unit:\"C\",\n    color: \"#000\",\n    value: msg.payload.status.temperature,\n    lat: msg.payload.location.gps.lat,\n    lon: msg.payload.location.gps.lon,\n    iconColor : hsc,\n    radius : 1000,\n    \"fillOpacity\" : 0.5,\n    //icon: \"male\",\n    icon: busy    \n}\n\nreturn nmsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610.5,
+        "y": 379,
+        "wires": [
+            [
+                "ff9c57be5cd5590c",
+                "3e992f969c91f095"
+            ]
+        ]
+    },
+    {
+        "id": "1b0b09f34efaecd0",
+        "type": "comment",
+        "z": "0d15b1eb48c222ce",
+        "name": "Fichier mapflow.json  : How to embed Map in Dashboard and connect it via MQTT.",
+        "info": "This example shows how to embed the Worldmap \nwithin the `node-red-dashboard`\n\nThe  flow creates a dashboard button that \ngenerates a randon position, with the required \nicon, and passes that to the worldmap. The\nmap is configured to automatically pan to the\nposition of any point that arrives.\n",
+        "x": 380,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ca3638e68c140e02",
+        "type": "debug",
+        "z": "0d15b1eb48c222ce",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5a2a445ccb85d326",
+        "type": "comment",
+        "z": "0d15b1eb48c222ce",
+        "name": "Auteur ?????",
+        "info": "",
+        "x": 170,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0f94af908bc53d5b",
+        "type": "worldmap-tracks",
+        "z": "0d15b1eb48c222ce",
+        "name": "Mon voyage",
+        "depth": "10",
+        "layer": "single",
+        "smooth": false,
+        "x": 630,
+        "y": 240,
+        "wires": [
+            [
+                "3e992f969c91f095"
+            ]
+        ]
+    },
+    {
+        "id": "3e992f969c91f095",
+        "type": "ui_worldmap",
+        "z": "0d15b1eb48c222ce",
+        "group": "44825176ad0d422c",
+        "order": 4,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "lat": "43.61999752",
+        "lon": "7.0499998",
+        "zoom": "11",
+        "layer": "OSMC",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "deg",
+        "showgrid": "true",
+        "allowFileDrop": "false",
+        "path": "/worldmap",
+        "overlist": "DR,CO,RA,DN,TL,HM",
+        "maplist": "OSMG,OSMC,EsriC,EsriS,EsriT,EsriO,EsriDG,NatGeo,UKOS,OpTop",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 860,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "44825176ad0d422c",
+        "type": "ui_group",
+        "z": "0d15b1eb48c222ce",
+        "name": "SP",
+        "tab": "d367e0334f2be122",
+        "order": 1,
+        "disp": true,
+        "width": "25",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "86908dabf911a304",
+        "type": "mqtt-broker",
+        "name": "IOT 10.0.1.58",
+        "broker": "10.0.1.58",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d367e0334f2be122",
+        "type": "ui_tab",
+        "z": "0d15b1eb48c222ce",
+        "name": "Tab of  Swimming Pools",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c7b95b0a456ec908",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-contrib-web-worldmap": "5.5.4"
+        }
+    }
+]

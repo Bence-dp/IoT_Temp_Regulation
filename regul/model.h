@@ -39,6 +39,10 @@ struct esp_model {
   String target_ip;
   int target_port;
   int target_sp;
+
+  // --- PISCINE ---
+  bool occuped;
+  bool hotspot;
 };
 
 void initStaticInfo(esp_model &esp);

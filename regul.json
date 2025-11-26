@@ -514,7 +514,7 @@
         "z": "e39d68b61008c9da",
         "g": "3960a0a77bbc059d",
         "name": "getCoolerStatus",
-        "func": "msg.payload = msg.payload.status.cool;\nreturn msg;",
+        "func": "msg.payload = msg.payload.status.cold;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1839,10 +1839,10 @@
         "type": "mqtt in",
         "z": "e39d68b61008c9da",
         "name": "",
-        "topic": "uca/iot/master",
+        "topic": "uca/iot/master/GR_A",
         "qos": "2",
         "datatype": "utf8",
-        "broker": "a4e1be7a161dba3a",
+        "broker": "86908dabf911a304",
         "nl": false,
         "rap": true,
         "rh": 0,
@@ -2021,10 +2021,10 @@
         "className": ""
     },
     {
-        "id": "a4e1be7a161dba3a",
+        "id": "86908dabf911a304",
         "type": "mqtt-broker",
-        "name": "broker.hivemq.com",
-        "broker": "broker.hivemq.com",
+        "name": "IOT 10.0.1.58",
+        "broker": "10.0.1.58",
         "port": 1883,
         "clientid": "",
         "autoConnect": true,
@@ -2097,7 +2097,7 @@
         "hidden": false
     },
     {
-        "id": "f89549d301a6c56a",
+        "id": "5380d4554ca03b0f",
         "type": "global-config",
         "env": [],
         "modules": {

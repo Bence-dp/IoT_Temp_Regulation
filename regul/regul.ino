@@ -107,6 +107,12 @@ void loop() {
   } else {
     Serial.println("MQTT publish failed");
   }
+  bool published2 = mqttclient.publish(MQTT_TOPIC_GR_A, serialize(&esp).c_str());
+  if (published2) {
+    Serial.println("Sent to MQTT GR_A");
+  } else {
+    Serial.println("MQTT GR_A publish failed");
+  }
 
   // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer la boucle
   delay(esp.target_sp * 1000);

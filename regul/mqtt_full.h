@@ -9,6 +9,7 @@
 
 /*===== MQTT TOPICS ===============*/
 #define MQTT_TOPIC "uca/iot/master"
+#define MQTT_TOPIC_GR_A "uca/iot/master/GR_A"
 
 /*===== ESP is a MQTT Client =======*/
 extern WiFiClient espClient;
