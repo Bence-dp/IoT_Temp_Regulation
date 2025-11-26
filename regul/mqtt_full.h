@@ -2,10 +2,16 @@
 #define MQTT_FULL_H
 
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include <PubSubClient.h>
 #include <WiFi.h>
 #include "config.h"
+#include "globals.h"
+#include "temperature.h"
 #include "wifi_utils.h"
+
+
+#include <math.h>
 
 /*===== MQTT TOPICS ===============*/
 #define MQTT_TOPIC "uca/iot/master"

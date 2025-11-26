@@ -11,6 +11,32 @@
 
 #include "mqtt_full.h"
 
+
+// TODO: garder 2 variables gloables
+// - max_temp
+// - id de celui-ci, pour update max_temp si jamais sa temp descend
+
+double EARTH_RADIUS_KM = 6371.0;
+
+
+double deg2rad(double deg) {
+    return deg * 3.14159265358979323846 / 180.0;
+}
+
+double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
+    double dLat = deg2rad(lat2 - lat1);
+    double dLon = deg2rad(lon2 - lon1);
+
+    double a = sin(dLat/2) * sin(dLat/2) +
+               cos(deg2rad(lat1)) * cos(deg2rad(lat2)) *
+               sin(dLon/2) * sin(dLon/2);
+
+    return 2 * EARTH_RADIUS_KM * asin(sqrt(a));
+}
+
+
+
+
 /*===== MQTT broker/server ========*/
 //const char* mqtt_server = "192.168.1.101"; 
 //const char* mqtt_server = "public.cloud.shiftr.io"; // Failed in 2021
@@ -49,6 +75,54 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
     message += (char)payload[i];
   }
   USE_SERIAL.println(message);
+
+  // Parse JSON
+  StaticJsonDocument<768> doc;
+  DeserializationError error = deserializeJson(doc, message);
+
+  if (error) {
+    USE_SERIAL.print("JSON error: ");
+    USE_SERIAL.println(error.c_str());
+    return;
+  }
+
+  // Extract remote ESP temperature
+  float remote_temp = doc["status"]["temperature"];
+
+  // Extract remote GPS position
+  double remote_lat = doc["location"]["gps"]["lat"];
+  double remote_lon = doc["location"]["gps"]["lon"];
+
+  USE_SERIAL.printf("Remote temp = %.2f°C\n", remote_temp);
+  USE_SERIAL.printf("Remote GPS = (%.5f, %.5f)\n", remote_lat, remote_lon);
+
+  // Compute distance using Haversine formula
+  double dist_km = haversineDistance(esp.latitude, esp.longitude, remote_lat, remote_lon);
+
+  USE_SERIAL.printf("Distance = %.3f km\n", dist_km);
+
+  // Check distance
+  if (dist_km <= 10.0) {
+    USE_SERIAL.println("ESP is within 10km radius");
+
+    // Compare temperatures
+    if (remote_temp > getTemp()) {
+      USE_SERIAL.println("Remote temperature is HIGHER.");
+      esp.hotspot = false;
+      USE_SERIAL.println("Set hotspot to false.");
+    } else if (remote_temp < getTemp()) {
+      USE_SERIAL.println("Remote temperature is LOWER.");
+      esp.hotspot = true;
+      USE_SERIAL.println("Set hotspot to true.");
+    } else {
+      USE_SERIAL.println("Temperatures are equal.");
+      esp.hotspot = false;
+      USE_SERIAL.println("Set hotspot to false.");
+    }
+  }
+  else {
+    USE_SERIAL.println("ESP is farther than 10km ");
+  }
 
   /*
   char msg[length + 1];
@@ -101,6 +175,7 @@ void mqtt_subscribe_mytopics() {
       // THEN Subscribe topics
       //mqttclient.subscribe(TOPIC_LED,1);
       // mqttclient.subscribe(anothertopic ?);
+      mqttclient.subscribe(MQTT_TOPIC);
     } 
     else { // Connection to broker failed : retry !
       USE_SERIAL.print("failed, rc=");
