@@ -28,6 +28,7 @@ struct esp_model {
   String ident;
   String user;
   String loc;
+  String name;
 
   // --- NET ---
   String uptime;
@@ -39,6 +40,9 @@ struct esp_model {
   String target_ip;
   int target_port;
   int target_sp;
+
+  bool occuped;
+  bool hotspot;
 };
 
 void initStaticInfo(esp_model &esp);

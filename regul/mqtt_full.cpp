@@ -11,14 +11,17 @@
 
 #include "mqtt_full.h"
 
+
 /*===== MQTT broker/server ========*/
 //const char* mqtt_server = "192.168.1.101"; 
 //const char* mqtt_server = "public.cloud.shiftr.io"; // Failed in 2021
 // need login and passwd (public,public) mqtt://public:public@public.cloud.shiftr.io
-const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
-// const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
+//const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
+//const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
+const char* mqtt_server = "10.0.1.58";
 //const char* mqtt_server = "mqtt.eclipseprojects.io"; // anynomous Ok in 2021
-
+float temp_max = 0;
+String id_max = "";
 /*===== ESP is a MQTT Client =======*/
 WiFiClient espClient;               // Wifi 
 PubSubClient mqttclient(espClient); // MQTT client
@@ -35,41 +38,71 @@ void mqtt_setup() {
 /* 
  * Callback when a message is published on a subscribed topic.
  */
-void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
-  USE_SERIAL.print("Message arrived on topic : ");
-  USE_SERIAL.println(topic);
-  USE_SERIAL.print("=> ");
 
-  // Byte list (of the payload) to String and print to Serial
+void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
+
+  // Convertir payload → String
   String message;
   for (int i = 0; i < length; i++) {
-    //USE_SERIAL.print((char)payload[i]);
     message += (char)payload[i];
   }
-  USE_SERIAL.println(message);
 
-  /*
-  char msg[length + 1];
-  memcpy(msg, payload, length);
-  msg[length] = NULL;
-  message = String(msg);
-  */
+  Serial.print("Topic: ");
+  Serial.println(topic);
+  Serial.print("Message JSON: ");
+  //Serial.println(message);
 
-  // Feel free to add more if statements to control more GPIOs with MQTT
+  // Buffer JSON
+  StaticJsonDocument<256> doc;
 
-  // If a message is received on the topic, you check if the message is either "on" or "off".
-  // Here we change the output state according to the message ... why not !
-/*   if (String(topic) == TOPIC_LED) {
-    USE_SERIAL.print("so ... changing output to ");
-    if (message == "on") {
-      USE_SERIAL.println("on");
-      set_LED(HIGH);
+  // Parse
+  DeserializationError error = deserializeJson(doc, message);
+  if (error) {
+    Serial.print("Erreur JSON: ");
+    Serial.println(error.c_str());
+    return;
+  }
+
+
+  // Récupérer les valeurs
+  float temperature = doc["status"]["temperature"];
+  float latitude    = doc["location"]["gps"]["lat"];
+  float longitude   = doc["location"]["gps"]["lon"];
+  String id = doc["info"]["ident"];
+  float distance =   distanceKm(latitude, longitude, esp.latitude, esp.longitude);
+    // Affichage
+  Serial.print("Température = ");
+  Serial.println(temperature);
+
+  Serial.print("Latitude = ");
+  Serial.println(latitude);
+
+  Serial.print("Longitude = ");
+  Serial.println(longitude);
+
+  Serial.print("id = ");
+  Serial.println(id);
+
+  if (distance <= 10){
+    if (temperature > temp_max){
+      temp_max = temperature;
+      id_max = id;
     }
-    else if (message == "off") {
-      USE_SERIAL.println("off");
-      set_LED(LOW);
+    if (temp_max < esp.temperature ){
+      
+      esp.hotspot = true;
+      Serial.print("Je suis hotspot");
+      
     }
-  } */
+    else{
+      esp.hotspot = false;
+      Serial.print("Je ne suis pas hotspot");
+
+
+
+    }
+  }
+
 }
 
 /*============= SUBSCRIBE to TOPICS ===================*/
@@ -97,6 +130,8 @@ void mqtt_subscribe_mytopics() {
       USE_SERIAL.println("connected");
 	        
       // THEN Subscribe topics
+      mqttclient.subscribe("uca/iot/master");
+
       //mqttclient.subscribe(TOPIC_LED,1);
       // mqttclient.subscribe(anothertopic ?);
     } 
@@ -108,3 +143,5 @@ void mqtt_subscribe_mytopics() {
     }
   } // end while
 }
+
+

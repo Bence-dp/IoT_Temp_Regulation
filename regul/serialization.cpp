@@ -10,7 +10,7 @@ String serialize(esp_model *em) {
   status["regul"] = em->regulationState ? "RUNNING" : "HALT";
   status["fire"] = em->fireDetected;
   status["heat"] = em->heaterState ? "ON" : "OFF";
-  status["cool"] = em->coolerState ? "ON" : "OFF";
+  status["cold"] = em->coolerState ? "ON" : "OFF";
   status["fanspeed"] = em->fanSpeed;
 
   // === LOCATION SECTION ===
@@ -45,6 +45,12 @@ String serialize(esp_model *em) {
   reporthost["target_port"] = em->target_port;
   reporthost["sp"] = em->target_sp;
 
+  JsonObject piscine = doc.createNestedObject("piscine");
+  piscine["occuped"] = em->occuped;
+  piscine["hotspot"] = em->hotspot;
+
+  
+  
   // === SERIALIZATION ===
   String output;
   serializeJson(doc, output);

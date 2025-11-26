@@ -6,6 +6,9 @@
 #include <WiFi.h>
 #include "config.h"
 #include "wifi_utils.h"
+#include "globals.h"
+#include "utils.h"
+#include <ArduinoJson.h>
 
 /*===== MQTT TOPICS ===============*/
 #define MQTT_TOPIC "uca/iot/master"
