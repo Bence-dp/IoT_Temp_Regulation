@@ -1,12 +1,12 @@
-#include <Arduino.h>
+  #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include "AsyncTCP.h"
 #include <DallasTemperature.h>
 #include "ESPAsyncWebServer.h"
-#include "FS.h"
 #include <OneWire.h>
 #include <LittleFS.h>
 #include <WiFi.h>
+#include "AsyncTCP.h"
+#include "FS.h"
 
 #include "fan.h"
 #include "fire_detection.h"
@@ -65,6 +65,7 @@ void setup() {
   mqtt_subscribe_mytopics();
 }
 
+
 void loop() {
   // D'abord, on vérifie si l'utilisateur a envoyé des commandes via Serial
   updateFromSerial();
@@ -90,30 +91,11 @@ void loop() {
   Serial.println(serialize(&esp));
   sendReportNow();
 
-  // Ensure MQTT is connected and process network events
-  if (!mqttclient.connected()) {
-    // try to (re)connect and subscribe
-    mqtt_subscribe_mytopics();
-  } else {
-    // let the client maintain keepalive and process callbacks
-    mqttclient.loop();
-  }
-
+  
   // On envoie toutes les infos au broker MQTT
-  mqttclient.setBufferSize(2048);
-  bool published = mqttclient.publish(MQTT_TOPIC, serialize(&esp).c_str());
-  if (published) {
-    Serial.println("Sent to MQTT");
-  } else {
-    Serial.println("MQTT publish failed");
-  }
-  bool published2 = mqttclient.publish(MQTT_TOPIC_GR_A, serialize(&esp).c_str());
-  if (published2) {
-    Serial.println("Sent to MQTT GR_A");
-  } else {
-    Serial.println("MQTT GR_A publish failed");
-  }
+  sendMqttReport();
 
   // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer la boucle
-  delay(esp.target_sp * 1000);
+  // delay(esp.target_sp * 1000);
+  delay(300);
 }

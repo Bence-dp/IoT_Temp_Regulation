@@ -19,4 +19,6 @@ void mqtt_setup();
 void mqtt_pubcallback(char* topic, byte* payload, unsigned int length);
 void mqtt_subscribe_mytopics();
 
+void sendMqttReport();
+
 #endif

@@ -135,10 +135,11 @@ void setup_http_routes(AsyncWebServer* server) {
 void sendReportNow() {
   static uint32_t tick = 0;
   if (esp.target_sp == 0) return;
-  if ( millis() - tick < esp.target_sp) { 
+  if ( millis() - tick < esp.target_sp * 1000) { 
     return; 
   }
-
+  tick = millis();
+  
   WiFiClient client;
   HTTPClient http;
 

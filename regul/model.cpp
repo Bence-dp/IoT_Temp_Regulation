@@ -15,5 +15,6 @@ void initStaticInfo(esp_model &esp) {
   esp.target_port = 1880;
   esp.target_sp = 2;
   esp.occuped = false;
-  esp.hotspot - false;
+  esp.hotspot = false;
+  esp.piscine_sp = 5;
 }
