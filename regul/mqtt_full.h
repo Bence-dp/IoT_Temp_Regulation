@@ -8,10 +8,8 @@
 #include "config.h"
 #include "globals.h"
 #include "temperature.h"
+#include "utils.h"
 #include "wifi_utils.h"
-
-
-#include <math.h>
 
 /*===== MQTT TOPICS ===============*/
 #define MQTT_TOPIC "uca/iot/master"

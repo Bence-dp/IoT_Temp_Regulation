@@ -32,6 +32,6 @@
 #define HISTORY_SIZE 5
 
 // Hostname de l'ESP
-#define HOST_NAME "Daniel"
+#define HOST_NAME "ESP32 GR_A"
 
 #endif

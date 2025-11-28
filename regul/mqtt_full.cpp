@@ -12,41 +12,16 @@
 #include "mqtt_full.h"
 
 
-// TODO: garder 2 variables gloables
-// - max_temp
-// - id de celui-ci, pour update max_temp si jamais sa temp descend
-
-double EARTH_RADIUS_KM = 6371.0;
-
-
-double deg2rad(double deg) {
-    return deg * 3.14159265358979323846 / 180.0;
-}
-
-double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
-    double dLat = deg2rad(lat2 - lat1);
-    double dLon = deg2rad(lon2 - lon1);
-
-    double a = sin(dLat/2) * sin(dLat/2) +
-               cos(deg2rad(lat1)) * cos(deg2rad(lat2)) *
-               sin(dLon/2) * sin(dLon/2);
-
-    return 2 * EARTH_RADIUS_KM * asin(sqrt(a));
-}
-
-
-
-
 /*===== MQTT broker/server ========*/
 //const char* mqtt_server = "192.168.1.101"; 
 //const char* mqtt_server = "public.cloud.shiftr.io"; // Failed in 2021
 // need login and passwd (public,public) mqtt://public:public@public.cloud.shiftr.io
-// const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
-const char* mqtt_server = "10.0.1.58"; 
-
-// const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
+//const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
+//const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
+const char* mqtt_server = "10.0.1.58";
 //const char* mqtt_server = "mqtt.eclipseprojects.io"; // anynomous Ok in 2021
-
+float temp_max = 0;
+String id_max = "";
 /*===== ESP is a MQTT Client =======*/
 WiFiClient espClient;               // Wifi 
 PubSubClient mqttclient(espClient); // MQTT client
@@ -64,88 +39,67 @@ void mqtt_setup() {
  * Callback when a message is published on a subscribed topic.
  */
 void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
-  USE_SERIAL.print("Message arrived on topic : ");
-  USE_SERIAL.println(topic);
-  USE_SERIAL.print("=> ");
 
-  // Byte list (of the payload) to String and print to Serial
+  // Convertir payload -> String
   String message;
   for (int i = 0; i < length; i++) {
-    //USE_SERIAL.print((char)payload[i]);
     message += (char)payload[i];
   }
+
+  USE_SERIAL.print("Topic: ");
+  USE_SERIAL.println(topic);
+  USE_SERIAL.print("Message JSON: ");
   USE_SERIAL.println(message);
 
-  // Parse JSON
-  StaticJsonDocument<768> doc;
-  DeserializationError error = deserializeJson(doc, message);
+  // Buffer JSON
+  StaticJsonDocument<256> doc;
 
+  // Parse
+  DeserializationError error = deserializeJson(doc, message);
   if (error) {
-    USE_SERIAL.print("JSON error: ");
+    USE_SERIAL.print("Erreur JSON: ");
     USE_SERIAL.println(error.c_str());
     return;
   }
 
-  // Extract remote ESP temperature
-  float remote_temp = doc["status"]["temperature"];
 
-  // Extract remote GPS position
-  double remote_lat = doc["location"]["gps"]["lat"];
-  double remote_lon = doc["location"]["gps"]["lon"];
+  // Récupérer les valeurs
+  float temperature = doc["status"]["temperature"];
+  float latitude    = doc["location"]["gps"]["lat"];
+  float longitude   = doc["location"]["gps"]["lon"];
+  String id = doc["info"]["ident"];
+  float distance =   distanceKm(latitude, longitude, esp.latitude, esp.longitude);
+    // Affichage
+  USE_SERIAL.print("Température = ");
+  USE_SERIAL.println(temperature);
 
-  USE_SERIAL.printf("Remote temp = %.2f°C\n", remote_temp);
-  USE_SERIAL.printf("Remote GPS = (%.5f, %.5f)\n", remote_lat, remote_lon);
+  USE_SERIAL.print("Latitude = ");
+  USE_SERIAL.println(latitude);
 
-  // Compute distance using Haversine formula
-  double dist_km = haversineDistance(esp.latitude, esp.longitude, remote_lat, remote_lon);
+  USE_SERIAL.print("Longitude = ");
+  USE_SERIAL.println(longitude);
 
-  USE_SERIAL.printf("Distance = %.3f km\n", dist_km);
+  USE_SERIAL.print("id = ");
+  USE_SERIAL.println(id);
 
   // Check distance
-  if (dist_km <= 10.0) {
-    USE_SERIAL.println("ESP is within 10km radius");
+  if (distance <= 10){
+
+    if (temperature > temp_max){
+      temp_max = temperature;
+      id_max = id;
+    }
 
     // Compare temperatures
-    if (remote_temp > getTemp()) {
-      USE_SERIAL.println("Remote temperature is HIGHER.");
-      esp.hotspot = false;
-      USE_SERIAL.println("Set hotspot to false.");
-    } else if (remote_temp < getTemp()) {
-      USE_SERIAL.println("Remote temperature is LOWER.");
+    if (temp_max < esp.temperature ){
       esp.hotspot = true;
-      USE_SERIAL.println("Set hotspot to true.");
+      USE_SERIAL.print("Je suis hotspot");
     } else {
-      USE_SERIAL.println("Temperatures are equal.");
       esp.hotspot = false;
-      USE_SERIAL.println("Set hotspot to false.");
+      USE_SERIAL.print("Je ne suis pas hotspot");
     }
   }
-  else {
-    USE_SERIAL.println("ESP is farther than 10km ");
-  }
 
-  /*
-  char msg[length + 1];
-  memcpy(msg, payload, length);
-  msg[length] = NULL;
-  message = String(msg);
-  */
-
-  // Feel free to add more if statements to control more GPIOs with MQTT
-
-  // If a message is received on the topic, you check if the message is either "on" or "off".
-  // Here we change the output state according to the message ... why not !
-/*   if (String(topic) == TOPIC_LED) {
-    USE_SERIAL.print("so ... changing output to ");
-    if (message == "on") {
-      USE_SERIAL.println("on");
-      set_LED(HIGH);
-    }
-    else if (message == "off") {
-      USE_SERIAL.println("off");
-      set_LED(LOW);
-    }
-  } */
 }
 
 /*============= SUBSCRIBE to TOPICS ===================*/
@@ -173,6 +127,8 @@ void mqtt_subscribe_mytopics() {
       USE_SERIAL.println("connected");
 	        
       // THEN Subscribe topics
+      mqttclient.subscribe("uca/iot/master");
+
       //mqttclient.subscribe(TOPIC_LED,1);
       // mqttclient.subscribe(anothertopic ?);
       mqttclient.subscribe(MQTT_TOPIC);
@@ -185,3 +141,5 @@ void mqtt_subscribe_mytopics() {
     }
   } // end while
 }
+
+

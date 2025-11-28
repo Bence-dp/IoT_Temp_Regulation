@@ -28,6 +28,7 @@ struct esp_model {
   String ident;
   String user;
   String loc;
+  String name;
 
   // --- NET ---
   String uptime;
