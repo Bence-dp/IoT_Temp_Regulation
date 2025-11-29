@@ -7,6 +7,7 @@
 #include <WiFi.h>
 #include "config.h"
 #include "globals.h"
+#include "serialization.h"
 #include "temperature.h"
 #include "utils.h"
 #include "wifi_utils.h"
@@ -22,5 +23,7 @@ extern PubSubClient mqttclient;
 void mqtt_setup();
 void mqtt_pubcallback(char* topic, byte* payload, unsigned int length);
 void mqtt_subscribe_mytopics();
+
+void sendMqttReport();
 
 #endif

@@ -44,6 +44,7 @@ struct esp_model {
   // --- PISCINE ---
   bool occuped;
   bool hotspot;
+  int piscine_sp; // sampling period for piscine report
 };
 
 void initStaticInfo(esp_model &esp);

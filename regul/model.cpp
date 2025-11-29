@@ -17,4 +17,8 @@ void initStaticInfo(esp_model &esp) {
   esp.target_sp = 2;
   esp.occuped = false;
   esp.hotspot = false;
+<<<<<<< HEAD
+=======
+  esp.piscine_sp = 5;
+>>>>>>> hugo-mqtt
 }

@@ -10,6 +10,7 @@
 *********/
 
 #include "mqtt_full.h"
+#include "serialization.h"
 
 
 /*===== MQTT broker/server ========*/
@@ -143,3 +144,40 @@ void mqtt_subscribe_mytopics() {
 }
 
 
+<<<<<<< HEAD
+=======
+void sendMqttReport() {
+  // On envoie toutes les infos au broker MQTT
+  // esp.piscine_sp
+  // on verifie si on doit envoyer un rapport piscine
+  static uint32_t tick_piscine = 0;
+  if (esp.piscine_sp == 0) return;
+  if ( millis() - tick_piscine < esp.piscine_sp * 1000) { 
+    return; 
+  }
+  tick_piscine = millis();
+
+  // Ensure MQTT is connected and process network events
+  if (!mqttclient.connected()) {
+    // try to (re)connect and subscribe
+    mqtt_subscribe_mytopics();
+  } else {
+    // let the client maintain keepalive and process callbacks
+    mqttclient.loop();
+  }
+
+  mqttclient.setBufferSize(2048);
+  bool published = mqttclient.publish(MQTT_TOPIC, serialize(&esp).c_str());
+  if (published) {
+    Serial.println("Sent to MQTT");
+  } else {
+    Serial.println("MQTT publish failed");
+  }
+  bool published2 = mqttclient.publish(MQTT_TOPIC_GR_A, serialize(&esp).c_str());
+  if (published2) {
+    Serial.println("Sent to MQTT GR_A");
+  } else {
+    Serial.println("MQTT GR_A publish failed");
+  }
+}
+>>>>>>> hugo-mqtt
