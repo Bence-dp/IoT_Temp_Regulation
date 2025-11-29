@@ -10,7 +10,6 @@
 *********/
 
 #include "mqtt_full.h"
-#include "serialization.h"
 
 
 /*===== MQTT broker/server ========*/
@@ -144,8 +143,6 @@ void mqtt_subscribe_mytopics() {
 }
 
 
-<<<<<<< HEAD
-=======
 void sendMqttReport() {
   // On envoie toutes les infos au broker MQTT
   // esp.piscine_sp
@@ -180,4 +177,3 @@ void sendMqttReport() {
     Serial.println("MQTT GR_A publish failed");
   }
 }
->>>>>>> hugo-mqtt
