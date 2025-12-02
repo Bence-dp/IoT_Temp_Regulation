@@ -2,16 +2,13 @@
 
 
 /*===== MQTT broker/server ========*/
-//const char* mqtt_server = "192.168.1.101"; 
-//const char* mqtt_server = "public.cloud.shiftr.io"; // Failed in 2021
-// need login and passwd (public,public) mqtt://public:public@public.cloud.shiftr.io
-//const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
-//const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
-//const char* mqtt_server = "10.0.1.58";
-//const char* mqtt_server = "mqtt.eclipseprojects.io"; // anynomous Ok in 2021
+// in globals.cpp
+
+/*========== Variables ============*/
 float temp_max = 0;
 String id_max = "";
-/*===== ESP is a MQTT Client =======*/
+
+/*===== ESP is a MQTT Client ======*/
 WiFiClient espClient;               // Wifi 
 PubSubClient mqttclient(espClient); // MQTT client
 
@@ -90,10 +87,10 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
 void check_hot_spot(){
       if (temp_max < esp.temperature ){
         esp.hotspot = true;
-        USE_SERIAL.print("Je suis hotspot");
+        USE_SERIAL.println("Je suis hotspot");
       } else {
         esp.hotspot = false;
-        USE_SERIAL.print("Je ne suis pas hotspot");
+        USE_SERIAL.println("Je ne suis pas hotspot");
       }
 }
 
