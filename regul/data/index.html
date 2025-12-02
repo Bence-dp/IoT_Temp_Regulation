@@ -62,7 +62,16 @@
       <input type="text" name="sp" placeholder="%PRT_T%"/><br/>
       <input type="submit" value="Change reporting host !"/>
     </form>
-
+    <h3> Mqtt broker, topic and timing :</h3>
+    <form action="/mqtt" method="post">
+      <label for="broker">Broker :</label>
+      <input type="text" name="broker" placeholder="%PRT_BROKER%"/><br/>
+      <label for="topic">Topic :</label>
+      <input type="text" name="topic" placeholder="%PRT_TOPIC%"/><br/>
+      <label for="timing"> Sampling Period (in seconds) :</label>
+      <input type="text" name="timing" placeholder="%PRT_TIMING%"/><br/>
+      <input type="submit" value="Change mqtt modification !"/>
+    </form>
     <script>
       // The last version should use fetch API instead of XMLHttpRequest() 
       // my proposal with help from

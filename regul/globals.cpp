@@ -21,3 +21,8 @@ int historyIndex = 0;  // index global
 float LUM_LOW = 300;  // luminosité minimale feu
 float LUM_HIGH = 3500;  // luminosité maximale feu
 float TEMP_FIRE = 35.0;  // seuil température feu
+
+String MQTT_TOPIC = "uca/iot/master";
+String MQTT_TOPIC_GR_A = "uca/iot/master/GR_A";
+String mqtt_server = "192.168.19.211";
+int MQTT_TIMING = 5;
