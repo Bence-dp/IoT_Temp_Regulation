@@ -13,8 +13,8 @@
 #include "wifi_utils.h"
 
 /*===== MQTT TOPICS ===============*/
-#define MQTT_TOPIC "uca/iot/master"
-#define MQTT_TOPIC_GR_A "uca/iot/master/GR_A"
+/* #define MQTT_TOPIC "uca/iot/master"
+#define MQTT_TOPIC_GR_A "uca/iot/master/GR_A" */
 
 /*===== ESP is a MQTT Client =======*/
 extern WiFiClient espClient;
@@ -26,5 +26,6 @@ void mqtt_subscribe_mytopics();
 void check_hot_spot();
 
 void sendMqttReport();
+void mqtt_disconnect();
 
 #endif

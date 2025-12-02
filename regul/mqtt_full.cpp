@@ -1,14 +1,3 @@
-/*********
-	Based on Rui Santos work : https://randomnerdtutorials.com/esp32-mqtt-publish-subscribe-arduino-ide/
-	File mqtt_full/mqtt_full.ino
-	Modified by GM
-
-	Tests with CLI :
-	
-  mosquitto_pub  -h test.mosquitto.org -t "uca/M1/iot/led" -m "{\"led\" : \"ON\"}" -q 1
-  mosquitto_sub  -h test.mosquitto.org -t "uca/M1/iot/temp"  -q 1
-*********/
-
 #include "mqtt_full.h"
 
 
@@ -18,7 +7,7 @@
 // need login and passwd (public,public) mqtt://public:public@public.cloud.shiftr.io
 //const char* mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
 //const char* mqtt_server = "192.168.19.211"; // anynomous Ok in 2021
-const char* mqtt_server = "10.0.1.58";
+//const char* mqtt_server = "10.0.1.58";
 //const char* mqtt_server = "mqtt.eclipseprojects.io"; // anynomous Ok in 2021
 float temp_max = 0;
 String id_max = "";
@@ -29,7 +18,7 @@ PubSubClient mqttclient(espClient); // MQTT client
 /*===== MQTT client setup =====*/
 void mqtt_setup() {
   // set server of our MQTT client
-  mqttclient.setServer(mqtt_server, 1883);
+  mqttclient.setServer(mqtt_server.c_str(), 1883);
   // set callback when publishes arrive for the subscribed topics
   mqttclient.setCallback(mqtt_pubcallback); 
 }
@@ -93,6 +82,7 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
     }
 
   }
+  USE_SERIAL.print("Receive Data from ourselves\n");
   
 
 }
@@ -132,11 +122,11 @@ void mqtt_subscribe_mytopics() {
       USE_SERIAL.println("connected");
 	        
       // THEN Subscribe topics
-      mqttclient.subscribe("uca/iot/master");
+      mqttclient.subscribe(MQTT_TOPIC.c_str());
 
       //mqttclient.subscribe(TOPIC_LED,1);
       // mqttclient.subscribe(anothertopic ?);
-      mqttclient.subscribe(MQTT_TOPIC);
+      mqttclient.subscribe(MQTT_TOPIC.c_str());
     } 
     else { // Connection to broker failed : retry !
       USE_SERIAL.print("failed, rc=");
@@ -169,16 +159,30 @@ void sendMqttReport() {
   }
 
   mqttclient.setBufferSize(2048);
-  bool published = mqttclient.publish(MQTT_TOPIC, serialize(&esp).c_str());
+  bool published = mqttclient.publish(MQTT_TOPIC.c_str(), serialize(&esp).c_str());
   if (published) {
     Serial.println("Sent to MQTT");
   } else {
     Serial.println("MQTT publish failed");
   }
-  bool published2 = mqttclient.publish(MQTT_TOPIC_GR_A, serialize(&esp).c_str());
+  bool published2 = mqttclient.publish(MQTT_TOPIC_GR_A.c_str(), serialize(&esp).c_str());
   if (published2) {
     Serial.println("Sent to MQTT GR_A");
   } else {
     Serial.println("MQTT GR_A publish failed");
   }
+}
+
+/**
+ * Disconnect the MQTT client.
+ * Safe to call even if the client is not connected.
+ */
+void mqtt_disconnect() {
+  if (mqttclient.connected()) {
+    mqttclient.disconnect();
+    USE_SERIAL.println("MQTT client disconnected");
+  } else {
+    USE_SERIAL.println("MQTT client already disconnected");
+  }
+
 }

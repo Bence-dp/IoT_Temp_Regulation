@@ -1,4 +1,5 @@
 #include "routes.h"
+#include "mqtt_full.h"
 
 #define USE_SERIAL Serial
 
@@ -20,6 +21,9 @@ String processor(const String & var){
   if (var == "PRT_IP") return esp.target_ip;
   if (var == "PRT_PORT") return String(esp.target_port);
   if (var == "PRT_T") return String(esp.target_sp);
+  if (var == "PRT_BROKER")  return mqtt_server;
+  if (var == "PRT_TOPIC")   return MQTT_TOPIC;
+  if (var == "PRT_TIMING")  return String(MQTT_TIMING);
   return String();
 }
 
@@ -119,6 +123,62 @@ void setup_http_routes(AsyncWebServer* server) {
         esp.target_port = atoi(request->arg("port").c_str());
         esp.target_sp = atoi(request->arg("sp").c_str());
       }
+      request->send(LittleFS, "/index.html", String(), false, processor);
+    });
+  
+  // POST /mqtt : reconfigure MQTT broker, topic and timing
+  server->on("/mqtt", HTTP_POST, [](AsyncWebServerRequest *request){
+      Serial.println("Receive MQTT reconfiguration request");
+
+      // Read form fields if present
+      String newBroker;
+      String newTopic;
+      int newTiming = MQTT_TIMING; // keep existing as default
+
+      if (request->hasArg("broker")) {
+        newBroker = request->arg("broker");
+      }
+      if (request->hasArg("topic")) {
+        newTopic = request->arg("topic");
+      }
+      if (request->hasArg("timing")) {
+        newTiming = atoi(request->arg("timing").c_str());
+      }
+
+      // Update globals if provided
+      if (newBroker.length() > 0) {
+        char* buf = (char*)malloc(newBroker.length() + 1);
+        if (buf) {
+          strcpy(buf, newBroker.c_str());
+          mqtt_server = buf;
+          Serial.print("MQTT broker updated: "); Serial.println(mqtt_server);
+        } else {
+          Serial.println("Failed to allocate memory for mqtt_server");
+        }
+      }
+
+      if (newTopic.length() > 0) {
+        char* tbuf = (char*)malloc(newTopic.length() + 1);
+        if (tbuf) {
+          strcpy(tbuf, newTopic.c_str());
+          MQTT_TOPIC = tbuf;
+          Serial.print("MQTT topic updated: "); Serial.println(MQTT_TOPIC);
+        } else {
+          Serial.println("Failed to allocate memory for MQTT_TOPIC");
+        }
+      }
+
+
+      if (newTiming > 0) {
+        esp.piscine_sp = newTiming;
+        Serial.print("MQTT timing updated: "); Serial.println(MQTT_TIMING);
+      }
+
+     //disonnect mqtt and setup again with new broker, topic and timing
+      mqtt_disconnect();
+      mqtt_setup();
+
+      // Return updated index page
       request->send(LittleFS, "/index.html", String(), false, processor);
     });
   

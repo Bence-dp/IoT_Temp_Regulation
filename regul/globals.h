@@ -27,4 +27,9 @@ extern float LUM_LOW;  // luminosité minimale feu
 extern float LUM_HIGH;  // luminosité maximale feu
 extern float TEMP_FIRE;  // seuil température feu
 
+extern String MQTT_TOPIC;
+extern String MQTT_TOPIC_GR_A;
+extern String mqtt_server;
+extern int MQTT_TIMING;
+
 #endif
