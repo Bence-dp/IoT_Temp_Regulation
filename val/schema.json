@@ -75,8 +75,17 @@
       },
       "required": ["target_ip", "target_port", "sp"],
       "additionalProperties": false
+    },
+    "piscine": {
+      "type": "object",
+      "properties": {
+        "occuped": { "type": "boolean" },
+        "hotspot": { "type": "boolean" }
+      },
+      "required": ["occuped", "hotspot"],
+      "additionalProperties": false
     }
   },
-  "required": ["status", "location", "regul", "info", "net", "reporthost"],
+  "required": ["status", "location", "regul", "info", "net", "reporthost", "piscine"],
   "additionalProperties": false
 }
