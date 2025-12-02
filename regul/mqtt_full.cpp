@@ -63,43 +63,48 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
   }
 
 
-  // Récupérer les valeurs
-  float temperature = doc["status"]["temperature"];
-  float latitude    = doc["location"]["gps"]["lat"];
-  float longitude   = doc["location"]["gps"]["lon"];
+
   String id = doc["info"]["ident"];
-  float distance =   distanceKm(latitude, longitude, esp.latitude, esp.longitude);
+
+  if (id != esp.ident ){
+    float temperature = doc["status"]["temperature"];
+    float latitude    = doc["location"]["gps"]["lat"];
+    float longitude   = doc["location"]["gps"]["lon"];
+    float distance =   distanceKm(latitude, longitude, esp.latitude, esp.longitude);
     // Affichage
-  USE_SERIAL.print("Température = ");
-  USE_SERIAL.println(temperature);
+    USE_SERIAL.print("Température = ");
+    USE_SERIAL.println(temperature);
 
-  USE_SERIAL.print("Latitude = ");
-  USE_SERIAL.println(latitude);
+    USE_SERIAL.print("Latitude = ");
+    USE_SERIAL.println(latitude);
 
-  USE_SERIAL.print("Longitude = ");
-  USE_SERIAL.println(longitude);
+    USE_SERIAL.print("Longitude = ");
+    USE_SERIAL.println(longitude);
 
-  USE_SERIAL.print("id = ");
-  USE_SERIAL.println(id);
+    USE_SERIAL.print("id = ");
+    USE_SERIAL.println(id);
 
-  // Check distance
-  if (distance <= 10){
-
-    if (temperature > temp_max){
-      temp_max = temperature;
-      id_max = id;
+    // Check distance
+    if (distance <= 10){
+      if (temperature > temp_max){
+        temp_max = temperature;
+        id_max = id;
+      }
     }
 
-    // Compare temperatures
-    if (temp_max < esp.temperature ){
-      esp.hotspot = true;
-      USE_SERIAL.print("Je suis hotspot");
-    } else {
-      esp.hotspot = false;
-      USE_SERIAL.print("Je ne suis pas hotspot");
-    }
   }
+  
 
+}
+
+void check_hot_spot(){
+      if (temp_max < esp.temperature ){
+        esp.hotspot = true;
+        USE_SERIAL.print("Je suis hotspot");
+      } else {
+        esp.hotspot = false;
+        USE_SERIAL.print("Je ne suis pas hotspot");
+      }
 }
 
 /*============= SUBSCRIBE to TOPICS ===================*/

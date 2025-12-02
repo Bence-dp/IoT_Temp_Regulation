@@ -91,7 +91,7 @@ void loop() {
   Serial.println(serialize(&esp));
   sendReportNow();
 
-  
+  check_hot_spot();
   // On envoie toutes les infos au broker MQTT
   sendMqttReport();
 
