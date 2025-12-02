@@ -61,7 +61,21 @@ def main():
         sys.exit(1)
     json_file = sys.argv[1]
     
-    schema = load_schema("./schema.json")
+    #on verifie ou se trouve le schema
+    schema_file = "./schema.json"
+    try:
+        import os
+        if not os.path.isfile(schema_file):
+            schema_file = "./val/schema.json"
+            if not os.path.isfile(schema_file):
+                print("Error: Schema file not found.")
+                sys.exit(1)
+    except Exception as e:
+        print(f"Error: Unexpected error locating schema file - {e}")
+        # sys.exit(1)
+    
+
+    schema = load_schema(schema_file)
 
     if not schema:
         print("Schema is empty.")
