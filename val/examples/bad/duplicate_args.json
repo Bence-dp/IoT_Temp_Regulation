@@ -14,7 +14,7 @@
 			"lat": 43.62453842,
 			"lon": 7.050628185
 		},
-		"address": 125
+		"address": "Les lucioles"
 	},
 	"regul": {
 		"lt": 26,
@@ -38,6 +38,7 @@
 	},
 	"piscine": {
 		"occuped": false,
+		"hotspot": true,
 		"hotspot": true
 	}
 }

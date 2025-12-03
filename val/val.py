@@ -48,6 +48,24 @@ def validate_file(file, schema):
     data = load_json(file)
     validate_json(data, schema)
 
+def check_duplicate_keys(file_path: str):
+    """Check for duplicate keys in a JSON file."""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            pairs = []
+            def object_pairs_hook(pairs_list):
+                keys = [key for key, _ in pairs_list]
+                if len(keys) != len(set(keys)):
+                    raise ValueError("Duplicate keys found in JSON.")
+                return dict(pairs_list)
+            json.loads(content, object_pairs_hook=object_pairs_hook)
+    except ValueError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error: Unexpected error checking duplicate keys - {e}")
+        sys.exit(1)
 
 def main():
     """Main function to handle command line arguments and initiate validation."""
@@ -61,7 +79,7 @@ def main():
         sys.exit(1)
     json_file = sys.argv[1]
     
-    #on verifie ou se trouve le schema
+    # check current directory first, then val/ directory
     schema_file = "./schema.json"
     try:
         import os
@@ -74,13 +92,13 @@ def main():
         print(f"Error: Unexpected error locating schema file - {e}")
         # sys.exit(1)
     
-
     schema = load_schema(schema_file)
 
     if not schema:
         print("Schema is empty.")
         sys.exit(1)
     
+    check_duplicate_keys(json_file)
     validate_file(json_file, schema)
     
 if __name__ == "__main__":

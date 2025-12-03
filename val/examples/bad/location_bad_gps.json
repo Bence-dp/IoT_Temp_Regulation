@@ -4,5 +4,6 @@
 "regul": { "lt": 10, "ht": 30 },
 "info": { "ident": "dev-004", "user": "x", "loc": "y" },
 "net": { "uptime": "10", "ssid": "n", "mac": "AA:AA:AA:AA:AA:AA", "ip": "127.0.0.1" },
-"reporthost": { "target_ip": "8.8.8.8", "target_port": 53, "sp": 1 }
+"reporthost": { "target_ip": "8.8.8.8", "target_port": 53, "sp": 1 },
+"piscine": {"occuped": false,"hotspot": true}
 }
