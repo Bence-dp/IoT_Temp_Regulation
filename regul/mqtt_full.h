@@ -11,6 +11,8 @@
 #include "temperature.h"
 #include "utils.h"
 #include "wifi_utils.h"
+#include "luminosite.h"
+
 
 /*===== MQTT TOPICS ===============*/
 /* #define MQTT_TOPIC "uca/iot/master"
