@@ -69,6 +69,21 @@ void setup_http_routes(AsyncWebServer* server) {
       /* Return current light value from esp model */
       request->send(200, "text/plain", String(esp.luminosity));
     });
+  
+  server->on("/fire", HTTP_GET, [](AsyncWebServerRequest *request){
+      /* Return current fire status from esp model */
+      request->send(200, "text/plain", String(esp.fireDetected));
+    });
+  
+  server->on("/ht", HTTP_GET, [](AsyncWebServerRequest *request){
+      /* Return current heater state from esp model */
+      request->send(200, "text/plain", String(esp.heaterState));
+    });
+  
+  server->on("/lt", HTTP_GET, [](AsyncWebServerRequest *request){
+      /* Return current cooler state from esp model */
+      request->send(200, "text/plain", String(esp.coolerState));
+    });
 
   // Provide full JSON status of the device
   server->on("/esp", HTTP_POST, [](AsyncWebServerRequest *request){
