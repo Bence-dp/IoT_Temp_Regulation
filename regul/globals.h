@@ -31,6 +31,6 @@ extern String MQTT_TOPIC;
 extern String MQTT_TOPIC_GR_A;
 extern String mqtt_server;
 extern int MQTT_TIMING;
-extern int DISTANCE
+extern int DISTANCE;
 
 #endif

@@ -4,8 +4,8 @@
 
 void initStaticInfo(esp_model &esp) {
   esp.name = "P_22201315 P_22204830 P_22200641";
-  esp.latitude = 43.55487;
-  esp.longitude = 6.93959;
+  esp.latitude = 43.599;
+  esp.longitude = 6.5;
   esp.lowThreshold = LOW_THRESHOLD;
   esp.highThreshold = HIGH_THRESHOLD;
   esp.ident = HOST_NAME;
