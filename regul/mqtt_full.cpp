@@ -76,6 +76,9 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
         temp_max = temperature;
         id_max = id;
       }
+      if (id == id_max){
+        temp_max = temperature;
+      }
     }
 
   }
@@ -91,6 +94,12 @@ void check_hot_spot(){
       } else {
         esp.hotspot = false;
         USE_SERIAL.println("Je ne suis pas hotspot");
+      }
+      if(getLum() < 2048){
+        esp.occuped = true;
+      }
+      else {
+        esp.occuped = false;
       }
 }
 

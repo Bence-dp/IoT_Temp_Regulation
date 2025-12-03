@@ -16,8 +16,8 @@ void wificonnect_multi(String hostname){
   wm.addAP("GMAP", "vijx47050");
   wm.addAP("IOT","iotmiage");
   wm.addAP("Bbox-EA6814CF","Hvtx6bGfD4Sn7PCs2r");
-  wm.addAP("Bence","bence004");
-  wm.addAP("Daniel-iPhone-SE1","bwx327e8c17fz");
+  //wm.addAP("Bence","bence004");
+  //wm.addAP("Daniel-iPhone-SE1","bwx327e8c17fz");
 
 
   
