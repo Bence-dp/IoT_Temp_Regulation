@@ -1,8 +1,8 @@
-# GR_A - TP - Step 1.5 : JSON and Node_RED
+# GR_A - Projet IOT
 
-TP `Step 1.5 : JSON and Node_RED` pour l'UE "Software components and services for Internet Of Things" du Master 1 Informatique de l'Université Côte d'Azur.
+Projet pour l'UE "Software components and services for Internet Of Things" du Master 1 Informatique de l'Université Côte d'Azur.
 
-## Membres du groupe GR_A
+## Membres (3) du groupe GR_A
 
 - Hugo CLAVEILLE
 - Bence DI PLACIDO
@@ -12,7 +12,7 @@ TP `Step 1.5 : JSON and Node_RED` pour l'UE "Software components and services fo
 
 - `regul/` Répertoire qui contient les fichiers pour le régulateur (la carte ESP32).
 - `val/` Répertoire qui contient un validateur json. Plus d'informations dans `val/README.md`.
-- `regul.json` un dashboard Node-RED pour afficher les informations du régulateur ainsi que pour modifier ses réglages.
+- `regul.json` un dashboard Node-RED pour afficher les informations du régulateur, pour modifier ses réglages ainsi que pour visualiser la carte des "piscines".
 - `README.md` ce readme.
 
 ## Utilisation
@@ -21,23 +21,49 @@ TP `Step 1.5 : JSON and Node_RED` pour l'UE "Software components and services fo
 
 Installez `Arduino IDE` et ouvrez le répertoire `regul/` dans celui-ci. 
 
-Téléchargez les librairies `Adafruit NeoPixel`, `ArduinoJson`, `DallasTemperature` et `One Wire`.
+Téléchargez les librairies `ArduinoHttpClient`, `Adafruit NeoPixel`, `ArduinoJson`, `Async TCP`, `DallasTemperature`, `ESP Async WebServer`, `One Wire` et `PubSubClient`.
 
-Avec le bouton `Upload` compilez et transférez le programme vers l'ESP32.
+Connecter la carte ESP32 avec votre ordinateur et configurer dans `Tools` (ou `Outils`) : `Board: ESP32 Dev Module` et pour `Port` le port USB sur lequel la carte est connecté.
+
+Avec `Control Shift P` selectionner `Upload to LittleFS to Pico/ESP8266/ESP32`, enfin avec le bouton `Upload` compilez et transférez le programme vers l'ESP32.
 
 ### Validateur
 
-Voir `val/README.md`.
+Un validateur JSON en Python, appelé dans Node-RED pour valider le format des JSON reçus.
 
-### Node-red
+Pour plus d'information voir `val/README.md`.
 
-Installez `Node-RED` et importez `regul.json`.
+### Node-RED
+
+Installez [Node-RED](https://nodered.org/).
+
+IMPORTANT : assurez-vous de vous situer dans le root du projet avant de lancer Node-RED (important pour le bon fonctionnement du validateur appelé par Node-RED).
+
+```
+[...]/IoT_Temp_Regulation $
+```
+
+Dans le root du projet lancer Node-RED :
+
+```bash
+node-red
+```
+
+Importez `regul.json`.
+
+Vous pouvez activer/désactiver les noeuds des groupes `MQTT`, `HTTP` et `Serial` pour changer le protocole utilisé pour récupérer les données de la carte ESP32. 
+
+Pour les noeuds du groupe `MQTT` vous pouvez activer/désactiver ou modifier des noeuds pour changer de broker MQTT.
+
+
 
 Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port de votre ESP32, et pour Baud Rate la valeur 9600.
 
 ## Fonctionnalités implémentées
 
 ### Régulateur (ESP32)
+
+#### Step 1.5
 
 - Mesures de températures.
 - Mesures de luminosité (Remarque : on mesure 4095 si la luminosité est basse, et 0 si élevée).
@@ -51,17 +77,31 @@ Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port 
 - Sérialisation en JSON à l'aide d'`ArduinoJson` de Blanchon.
 - Envoi du JSON a Node-RED a travers le port USB.
 
-### Validator:
+#### Step 2, 3, 4
+
+- Connection au Wifi (wificonnect_multi)
+- ESP32 as async webserver littlefs
+- "Page HTML Administrateur" (accessible sur http://\<adresse_IP_ESP32\>/) de la carte ESP32 affichant différents infos et permettant à modifier : 
+    - l'adresse et port IP pour le reporting HTTP ainsi que la sampling period
+    - adresse du broker MQTT, Topic ainsi que la sampling period
+- Envoi du JSON au dashboard Node-RED a travers via HTTP.
+- Mis-à-jour des seuils de température et de luminosité via les requetes HTTP reçus du Dashboard
+- Gestion de l'hotspot
+
+### Validator
 
 - Validateur JSON en python à l'aide de la librairie `jsonschema`
 - Fichiers tests (examples)
+- Est appelé dans Node-RED pour valider le format des JSON reçus.
 
-### Node-RED:
+### Node-RED
 
 - Dashboard avec plusieurs "Tabs" pour les différentes informations :
     - Infos régulation (temp, luminosité, températures seuil, chauffage, clim, etc.).
     - Infos localisation.
     - Infos diverses.
     - Infos réseau.
-- "Tab" Settings pour régler les seuils de température haute et basse, qui seront renvoyés vers l'ESP32. Le seuil de température pour la détection de feu peut également être modifier.
+- "Tab" `Settings` pour régler les seuils de température haute et basse, qui seront renvoyés vers l'ESP32 (via HTTP). Le seuil de température pour la détection de feu peut également être modifier. 
 - Une notification "Fire has been detected !" est affiché lorsqu'un feu est détecté.
+- "Tab" `Tab of Swimming Pools` affichant tout les ESP32s et l'hotspot
+

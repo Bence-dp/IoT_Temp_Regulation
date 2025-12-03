@@ -3,7 +3,7 @@
 #include "globals.h"
 
 void initStaticInfo(esp_model &esp) {
-  esp.name = "P_22201315 P_Claveille P_22200641";
+  esp.name = "P_22201315 P_22204830 P_22200641";
   esp.latitude = 43.55487;
   esp.longitude = 6.93959;
   esp.lowThreshold = LOW_THRESHOLD;
