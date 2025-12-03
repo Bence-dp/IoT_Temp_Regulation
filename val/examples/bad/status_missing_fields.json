@@ -11,5 +11,6 @@
 "regul": { "lt": 18, "ht": 30 },
 "info": { "ident": "dev-002", "user": "op", "loc": "lab" },
 "net": { "uptime": "1000", "ssid": "wifi", "mac": "00:11:22:33:44:55", "ip": "10.0.0.2" },
-"reporthost": { "target_ip": "10.0.0.6", "target_port": 514, "sp": 1 }
+"reporthost": { "target_ip": "10.0.0.6", "target_port": 514, "sp": 1 },
+"piscine": {"occuped": false,"hotspot": true}
 }
