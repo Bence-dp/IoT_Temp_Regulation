@@ -31,7 +31,7 @@ String MQTT_TOPIC_GR_A = "uca/iot/master/GR_A";
 // String mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
 // String mqtt_server = "mqtt.eclipseprojects.io"; // anynomous Ok in 2021
 // String mqtt_server = "192.168.19.211";
-// String mqtt_server = "10.0.1.58";
-String mqtt_server = "mqtt.claveille.fr";
+String mqtt_server = "10.0.1.58";
+// String mqtt_server = "mqtt.claveille.fr";
 
 int MQTT_TIMING = 5;
