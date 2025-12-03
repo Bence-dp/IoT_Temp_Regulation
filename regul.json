@@ -2,7 +2,7 @@
     {
         "id": "e39d68b61008c9da",
         "type": "tab",
-        "label": "Flux 1",
+        "label": "regul.json",
         "disabled": false,
         "info": "",
         "env": []
@@ -41,8 +41,8 @@
             "f53d6b551dc1d871",
             "221bc07edcfbe29d"
         ],
-        "x": 574,
-        "y": 219,
+        "x": 2174,
+        "y": 1119,
         "w": 712,
         "h": 762
     },
@@ -64,8 +64,8 @@
             "c3c68c5be3211f37",
             "89b8a44dc75b7bef"
         ],
-        "x": 574,
-        "y": 1019,
+        "x": 2174,
+        "y": 1919,
         "w": 432,
         "h": 262
     },
@@ -85,8 +85,8 @@
             "a80f74d73f798c04",
             "38240cea4a65c970"
         ],
-        "x": 574,
-        "y": 1319,
+        "x": 2174,
+        "y": 2219,
         "w": 372,
         "h": 202
     },
@@ -102,8 +102,8 @@
             "0dc1eb8669d7a4d3",
             "1cf0aaf7d0995837"
         ],
-        "x": 548,
-        "y": 1553,
+        "x": 2148,
+        "y": 2453,
         "w": 464,
         "h": 534
     },
@@ -118,10 +118,133 @@
         "nodes": [
             "64a0e08dfe3c2254"
         ],
-        "x": 1348,
-        "y": 73,
+        "x": 2148,
+        "y": 733,
         "w": 524,
         "h": 254
+    },
+    {
+        "id": "b1f326bbcb60207d",
+        "type": "group",
+        "z": "e39d68b61008c9da",
+        "name": "Tab of Swimming Pools",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b1c70c806e538fd6",
+            "f405bf04b34b99ce",
+            "c16d1753c46428dc",
+            "ff9c57be5cd5590c",
+            "d7c4f25639ade2eb",
+            "25642c0ef06a812b",
+            "f6ee11f246267cfb",
+            "1b0b09f34efaecd0",
+            "0f94af908bc53d5b",
+            "3e992f969c91f095"
+        ],
+        "x": 2174,
+        "y": 79,
+        "w": 892,
+        "h": 342
+    },
+    {
+        "id": "39dd4d0e760144ce",
+        "type": "group",
+        "z": "e39d68b61008c9da",
+        "name": "MQTT",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "47520618f00417b2",
+            "98f0826451331727",
+            "79198f5bac072412",
+            "2e41b05fe87cf6e3",
+            "d93cb2eb9571ce27",
+            "3afb9b7a10b6dfbf",
+            "f66a5e75a5706bc4",
+            "3bf51e46429d112a"
+        ],
+        "x": 54,
+        "y": 239,
+        "w": 612,
+        "h": 522
+    },
+    {
+        "id": "6880330342942bfb",
+        "type": "group",
+        "z": "e39d68b61008c9da",
+        "name": "HTTP",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "971602a417ee4d61",
+            "7213ad0498d1c03f"
+        ],
+        "x": 374,
+        "y": 859,
+        "w": 292,
+        "h": 182
+    },
+    {
+        "id": "13e6c0bd8c378de7",
+        "type": "group",
+        "z": "e39d68b61008c9da",
+        "name": "Serial",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "9ae6ef4e0565e196"
+        ],
+        "x": 374,
+        "y": 1139,
+        "w": 292,
+        "h": 82
+    },
+    {
+        "id": "703470573e99229c",
+        "type": "group",
+        "z": "e39d68b61008c9da",
+        "name": "Validator",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "cc3aa1ce95d25c44",
+            "88d652890dd2d954",
+            "ea070171f028d20d",
+            "cedecd8f94c32d02",
+            "01b2554e6d74e089",
+            "b5f99dde69e8fdad"
+        ],
+        "x": 774,
+        "y": 679,
+        "w": 1092,
+        "h": 202
+    },
+    {
+        "id": "2502bb4ce939d484",
+        "type": "group",
+        "z": "e39d68b61008c9da",
+        "name": "Validator",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "7205e30b0b063124",
+            "1bdbe6c2d811f569",
+            "590c597f162f012f",
+            "42416a88798c6d21",
+            "998d432093562e62",
+            "79dcae6256518520"
+        ],
+        "x": 774,
+        "y": 279,
+        "w": 1092,
+        "h": 202
     },
     {
         "id": "0dc1eb8669d7a4d3",
@@ -142,8 +265,8 @@
             "4b900be37d28e431",
             "80efd1e20b9d477e"
         ],
-        "x": 574,
-        "y": 1579,
+        "x": 2174,
+        "y": 2479,
         "w": 412,
         "h": 262
     },
@@ -164,8 +287,8 @@
             "280c9518031ec030",
             "ae23b5475cf394db"
         ],
-        "x": 574,
-        "y": 1859,
+        "x": 2174,
+        "y": 2759,
         "w": 412,
         "h": 202
     },
@@ -186,8 +309,8 @@
             "fb72e3328f8eec9a",
             "f03e46f7301efa9d"
         ],
-        "x": 1374,
-        "y": 99,
+        "x": 2174,
+        "y": 759,
         "w": 472,
         "h": 202
     },
@@ -203,8 +326,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 160,
+        "x": 2040,
+        "y": 600,
         "wires": []
     },
     {
@@ -215,11 +338,10 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 450,
-        "y": 440,
+        "x": 2050,
+        "y": 1520,
         "wires": [
             [
-                "02494ff0c7dc5212",
                 "4ba9d2af6523552a",
                 "0e6b6fdcdc73817a",
                 "226b7c3ec247fbf6",
@@ -261,8 +383,8 @@
         "seg2": "25",
         "diff": false,
         "className": "",
-        "x": 920,
-        "y": 260,
+        "x": 2520,
+        "y": 1160,
         "wires": []
     },
     {
@@ -290,8 +412,8 @@
         "seg2": "196",
         "diff": false,
         "className": "",
-        "x": 910,
-        "y": 360,
+        "x": 2510,
+        "y": 1260,
         "wires": []
     },
     {
@@ -301,8 +423,8 @@
         "d": true,
         "name": "",
         "serial": "2ea0640c728197c3",
-        "x": 2520,
-        "y": 420,
+        "x": 3340,
+        "y": 960,
         "wires": []
     },
     {
@@ -344,8 +466,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 910,
-        "y": 300,
+        "x": 2510,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -363,8 +485,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 280,
+        "x": 2280,
+        "y": 1180,
         "wires": [
             [
                 "7c82ba36143168b8",
@@ -385,8 +507,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 360,
+        "x": 2270,
+        "y": 1260,
         "wires": [
             [
                 "a938b8a9a16040fb"
@@ -406,8 +528,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 1060,
+        "x": 2260,
+        "y": 1960,
         "wires": [
             [
                 "b53bbc22df745a27"
@@ -432,8 +554,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 900,
-        "y": 1060,
+        "x": 2500,
+        "y": 1960,
         "wires": []
     },
     {
@@ -449,8 +571,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 440,
+        "x": 2260,
+        "y": 1340,
         "wires": [
             [
                 "eb5badca94b60a5c",
@@ -483,8 +605,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 910,
-        "y": 420,
+        "x": 2510,
+        "y": 1320,
         "wires": []
     },
     {
@@ -500,8 +622,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 680,
+        "x": 2280,
+        "y": 1580,
         "wires": [
             [
                 "2a20713b1b61627a"
@@ -521,8 +643,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 620,
+        "x": 2280,
+        "y": 1520,
         "wires": [
             [
                 "07eea8456bbb50eb"
@@ -547,8 +669,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 900,
-        "y": 680,
+        "x": 2500,
+        "y": 1580,
         "wires": []
     },
     {
@@ -569,8 +691,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 900,
-        "y": 620,
+        "x": 2500,
+        "y": 1520,
         "wires": []
     },
     {
@@ -586,8 +708,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 560,
+        "x": 2280,
+        "y": 1460,
         "wires": [
             [
                 "34eeb7547b650266"
@@ -612,8 +734,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 910,
-        "y": 560,
+        "x": 2510,
+        "y": 1460,
         "wires": []
     },
     {
@@ -634,8 +756,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 900,
-        "y": 780,
+        "x": 2500,
+        "y": 1680,
         "wires": []
     },
     {
@@ -651,8 +773,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 760,
+        "x": 2270,
+        "y": 1660,
         "wires": [
             [
                 "c84d8847fc8044f2",
@@ -673,8 +795,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 1120,
+        "x": 2270,
+        "y": 2020,
         "wires": [
             [
                 "ed480125672c7aa1"
@@ -694,8 +816,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 1180,
+        "x": 2270,
+        "y": 2080,
         "wires": [
             [
                 "28c10e33c49edf9f"
@@ -720,8 +842,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 880,
-        "y": 1120,
+        "x": 2480,
+        "y": 2020,
         "wires": []
     },
     {
@@ -742,8 +864,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 880,
-        "y": 1180,
+        "x": 2480,
+        "y": 2080,
         "wires": []
     },
     {
@@ -759,8 +881,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 1240,
+        "x": 2270,
+        "y": 2140,
         "wires": [
             [
                 "89b8a44dc75b7bef"
@@ -785,8 +907,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 880,
-        "y": 1240,
+        "x": 2480,
+        "y": 2140,
         "wires": []
     },
     {
@@ -802,8 +924,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
-        "y": 840,
+        "x": 2290,
+        "y": 1740,
         "wires": [
             [
                 "b7679c7f072504f9"
@@ -823,8 +945,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
-        "y": 900,
+        "x": 2290,
+        "y": 1800,
         "wires": [
             [
                 "56d577eba7b08e28"
@@ -849,8 +971,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 900,
-        "y": 840,
+        "x": 2500,
+        "y": 1740,
         "wires": []
     },
     {
@@ -871,8 +993,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 900,
-        "y": 900,
+        "x": 2500,
+        "y": 1800,
         "wires": []
     },
     {
@@ -893,8 +1015,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1000,
-        "y": 940,
+        "x": 2600,
+        "y": 1840,
         "wires": []
     },
     {
@@ -910,8 +1032,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 1360,
+        "x": 2260,
+        "y": 2260,
         "wires": [
             [
                 "6b2024de6084ba8f"
@@ -931,8 +1053,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 1420,
+        "x": 2260,
+        "y": 2320,
         "wires": [
             [
                 "a80f74d73f798c04"
@@ -952,8 +1074,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 1480,
+        "x": 2250,
+        "y": 2380,
         "wires": [
             [
                 "38240cea4a65c970"
@@ -978,8 +1100,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 870,
-        "y": 1360,
+        "x": 2470,
+        "y": 2260,
         "wires": []
     },
     {
@@ -1000,8 +1122,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 870,
-        "y": 1420,
+        "x": 2470,
+        "y": 2320,
         "wires": []
     },
     {
@@ -1022,8 +1144,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 870,
-        "y": 1480,
+        "x": 2470,
+        "y": 2380,
         "wires": []
     },
     {
@@ -1034,8 +1156,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 430,
-        "y": 1480,
+        "x": 2030,
+        "y": 2260,
         "wires": [
             [
                 "4a220492a937f449",
@@ -1064,8 +1186,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 1620,
+        "x": 2270,
+        "y": 2520,
         "wires": [
             [
                 "5c29c0f20303ac14"
@@ -1090,8 +1212,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 880,
-        "y": 1620,
+        "x": 2480,
+        "y": 2520,
         "wires": []
     },
     {
@@ -1107,8 +1229,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 1680,
+        "x": 2260,
+        "y": 2580,
         "wires": [
             [
                 "0b886b16d718028c"
@@ -1133,8 +1255,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 870,
-        "y": 1680,
+        "x": 2470,
+        "y": 2580,
         "wires": []
     },
     {
@@ -1150,8 +1272,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
-        "y": 1740,
+        "x": 2260,
+        "y": 2640,
         "wires": [
             [
                 "62ebc622acd46e7a"
@@ -1176,8 +1298,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 890,
-        "y": 1740,
+        "x": 2490,
+        "y": 2640,
         "wires": []
     },
     {
@@ -1193,8 +1315,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 1800,
+        "x": 2250,
+        "y": 2700,
         "wires": [
             [
                 "80efd1e20b9d477e"
@@ -1219,8 +1341,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 880,
-        "y": 1800,
+        "x": 2480,
+        "y": 2700,
         "wires": []
     },
     {
@@ -1236,8 +1358,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 670,
-        "y": 1900,
+        "x": 2270,
+        "y": 2800,
         "wires": [
             [
                 "6c8054b8bef3f0a2"
@@ -1262,8 +1384,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 880,
-        "y": 1900,
+        "x": 2480,
+        "y": 2800,
         "wires": []
     },
     {
@@ -1279,8 +1401,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 1960,
+        "x": 2280,
+        "y": 2860,
         "wires": [
             [
                 "373aab2189e86ba0"
@@ -1305,8 +1427,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 890,
-        "y": 1960,
+        "x": 2490,
+        "y": 2860,
         "wires": []
     },
     {
@@ -1322,8 +1444,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
-        "y": 2020,
+        "x": 2250,
+        "y": 2920,
         "wires": [
             [
                 "ae23b5475cf394db"
@@ -1348,8 +1470,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 870,
-        "y": 2020,
+        "x": 2470,
+        "y": 2920,
         "wires": []
     },
     {
@@ -1391,8 +1513,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 910,
-        "y": 460,
+        "x": 2510,
+        "y": 1360,
         "wires": [
             []
         ]
@@ -1405,8 +1527,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 810,
-        "y": 40,
+        "x": 2050,
+        "y": 860,
         "wires": [
             [
                 "31ad08ac903af94b",
@@ -1431,8 +1553,8 @@
         "className": "",
         "topic": "",
         "name": "Fire Notification",
-        "x": 1120,
-        "y": 740,
+        "x": 2720,
+        "y": 1640,
         "wires": []
     },
     {
@@ -1448,8 +1570,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
-        "y": 740,
+        "x": 2520,
+        "y": 1640,
         "wires": [
             [
                 "cdf04d2b156e75fc"
@@ -1469,8 +1591,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1490,
-        "y": 140,
+        "x": 2290,
+        "y": 800,
         "wires": [
             [
                 "bb94ded435a5b9d6"
@@ -1490,8 +1612,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1490,
-        "y": 200,
+        "x": 2290,
+        "y": 860,
         "wires": [
             [
                 "a394bb6ce00f4dec"
@@ -1518,8 +1640,8 @@
         "max": "40",
         "step": 1,
         "className": "",
-        "x": 1740,
-        "y": 200,
+        "x": 2540,
+        "y": 860,
         "wires": [
             [
                 "4429c511fe0ea6b0",
@@ -1547,8 +1669,8 @@
         "max": "30",
         "step": 1,
         "className": "",
-        "x": 1740,
-        "y": 140,
+        "x": 2540,
+        "y": 800,
         "wires": [
             [
                 "f2c062adacbc0ef5",
@@ -1569,8 +1691,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2070,
-        "y": 420,
+        "x": 2890,
+        "y": 960,
         "wires": [
             [
                 "c0532c721d04fca7",
@@ -1591,8 +1713,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2070,
-        "y": 360,
+        "x": 2890,
+        "y": 900,
         "wires": [
             [
                 "c0532c721d04fca7",
@@ -1618,8 +1740,8 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 1040,
-        "y": 500,
+        "x": 2640,
+        "y": 1400,
         "wires": []
     },
     {
@@ -1642,8 +1764,8 @@
         "max": "50",
         "step": 1,
         "className": "",
-        "x": 1740,
-        "y": 260,
+        "x": 2540,
+        "y": 920,
         "wires": [
             [
                 "3f7c2d873ffbf7e7",
@@ -1664,8 +1786,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2070,
-        "y": 480,
+        "x": 2890,
+        "y": 1020,
         "wires": [
             [
                 "c0532c721d04fca7",
@@ -1686,8 +1808,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1510,
-        "y": 260,
+        "x": 2310,
+        "y": 920,
         "wires": [
             [
                 "fb72e3328f8eec9a"
@@ -1699,20 +1821,19 @@
         "type": "http in",
         "z": "e39d68b61008c9da",
         "d": true,
+        "g": "6880330342942bfb",
         "name": "POST request from the ESP",
         "url": "/esp",
         "method": "post",
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 140,
-        "y": 280,
+        "x": 520,
+        "y": 900,
         "wires": [
             [
-                "b35708d1f33d8683",
                 "7213ad0498d1c03f",
-                "9373bd71a23ae6ef",
-                "6ca61a944e3dbb2c"
+                "b5f99dde69e8fdad"
             ]
         ]
     },
@@ -1721,15 +1842,14 @@
         "type": "serial in",
         "z": "e39d68b61008c9da",
         "d": true,
+        "g": "13e6c0bd8c378de7",
         "name": "",
         "serial": "2ea0640c728197c3",
-        "x": 140,
-        "y": 160,
+        "x": 520,
+        "y": 1180,
         "wires": [
             [
-                "b35708d1f33d8683",
-                "9373bd71a23ae6ef",
-                "6ca61a944e3dbb2c"
+                "b5f99dde69e8fdad"
             ]
         ]
     },
@@ -1738,11 +1858,12 @@
         "type": "http response",
         "z": "e39d68b61008c9da",
         "d": true,
+        "g": "6880330342942bfb",
         "name": "Response 200",
         "statusCode": "200",
         "headers": {},
-        "x": 440,
-        "y": 280,
+        "x": 560,
+        "y": 1000,
         "wires": []
     },
     {
@@ -1761,8 +1882,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 2110,
-        "y": 140,
+        "x": 2930,
+        "y": 680,
         "wires": [
             [
                 "b769e4165dd29bf6"
@@ -1785,8 +1906,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 2110,
-        "y": 200,
+        "x": 2930,
+        "y": 740,
         "wires": [
             [
                 "b769e4165dd29bf6"
@@ -1809,8 +1930,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 2110,
-        "y": 260,
+        "x": 2930,
+        "y": 800,
         "wires": [
             [
                 "b769e4165dd29bf6"
@@ -1830,15 +1951,17 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2460,
-        "y": 200,
+        "x": 3280,
+        "y": 740,
         "wires": []
     },
     {
         "id": "47520618f00417b2",
         "type": "mqtt in",
         "z": "e39d68b61008c9da",
-        "name": "",
+        "d": true,
+        "g": "39dd4d0e760144ce",
+        "name": "IOT 10.0.1.58 -- uca/iot/master/GR_A",
         "topic": "uca/iot/master/GR_A",
         "qos": "2",
         "datatype": "utf8",
@@ -1847,15 +1970,671 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 180,
+        "x": 310,
+        "y": 720,
+        "wires": [
+            [
+                "b5f99dde69e8fdad"
+            ]
+        ]
+    },
+    {
+        "id": "b1c70c806e538fd6",
+        "type": "inject",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 2290,
+        "y": 200,
+        "wires": [
+            [
+                "f405bf04b34b99ce"
+            ]
+        ]
+    },
+    {
+        "id": "f405bf04b34b99ce",
+        "type": "function",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "Téléportation",
+        "func": "// create random position\nvar lat = 43.61999752 + Math.random() * 0.1;\nvar lon = 7.0499998 + Math.random() * 0.1;\nmsg.payload={\n    lat:lat, \n    lon:lon, \n    name:\"Gilles\", \n    description: \"Temperature in my swimming pool\",\n    value: 20.5,\n    unit: \"°C\",\n    icon:\"male\", \n    color:\"#000\"};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2570,
+        "y": 260,
+        "wires": [
+            [
+                "0f94af908bc53d5b",
+                "3e992f969c91f095",
+                "ff9c57be5cd5590c"
+            ]
+        ]
+    },
+    {
+        "id": "c16d1753c46428dc",
+        "type": "ui_button",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "",
+        "group": "44825176ad0d422c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Move Gilles",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-male",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 2270,
+        "y": 260,
+        "wires": [
+            [
+                "f405bf04b34b99ce"
+            ]
+        ]
+    },
+    {
+        "id": "98f0826451331727",
+        "type": "mqtt in",
+        "z": "e39d68b61008c9da",
+        "d": true,
+        "g": "39dd4d0e760144ce",
+        "name": "IOT 10.0.1.58 -- uca/iot/master",
+        "topic": "uca/iot/master",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "86908dabf911a304",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "79dcae6256518520"
+            ]
+        ]
+    },
+    {
+        "id": "ff9c57be5cd5590c",
+        "type": "debug",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2960,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d7c4f25639ade2eb",
+        "type": "ui_button",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "",
+        "group": "44825176ad0d422c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 2290,
+        "y": 320,
+        "wires": [
+            [
+                "25642c0ef06a812b"
+            ]
+        ]
+    },
+    {
+        "id": "25642c0ef06a812b",
+        "type": "function",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "Reset Layer",
+        "func": "// clear the \"by default\" layer \nmsg.payload = {\"command\": { \"clear\": \"unknown\" } };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2570,
+        "y": 320,
+        "wires": [
+            [
+                "3e992f969c91f095"
+            ]
+        ]
+    },
+    {
+        "id": "f6ee11f246267cfb",
+        "type": "function",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "json adapt",
+        "func": "/* \n* Ce node permet d'adapter le format json produit \n* par l'ESP à celui attendu par la map \n*/\n\n//http://stevesnoderedguide.com/node-red-functions\nvar nmsg = { // on cree un nouveau message nodered\n    topic: msg.topic  // on garde le vieux topic\n    };\n\n// Gestion de l'occupation\nvar busy;\n/*\nif (msg.payload.piscine.occuped === false)\n  busy = \"battery-empty\";\nelse\n  busy = \"battery-full\";\n*/\nbusy = \"battery-full\";\n\nvar hsc;\nif (msg.payload.piscine.hotspot === false)\n  hsc = \"Blue\";\nelse\n  hsc = \"Red\";\n\nnmsg.payload = { // on modifie/adapte la payload\n    layer : \"swimming pools\",\n    name : msg.payload.info.ident,\n    description: msg.payload.info.user,\n    unit:\"C\",\n    color: \"#000\",\n    value: msg.payload.status.temperature,\n    lat: msg.payload.location.gps.lat,\n    lon: msg.payload.location.gps.lon,\n    iconColor : hsc,\n    radius : 1000,\n    \"fillOpacity\" : 0.5,\n    //icon: \"male\",\n    icon: busy    \n}\n\nreturn nmsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2570,
         "y": 380,
         "wires": [
             [
-                "9373bd71a23ae6ef",
+                "ff9c57be5cd5590c",
+                "3e992f969c91f095"
+            ]
+        ]
+    },
+    {
+        "id": "1b0b09f34efaecd0",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "mapflow.json file by G. Menez : How to embed Map in Dashboard and connect it via MQTT.",
+        "info": "This example shows how to embed the Worldmap \nwithin the `node-red-dashboard`\n\nThe  flow creates a dashboard button that \ngenerates a randon position, with the required \nicon, and passes that to the worldmap. The\nmap is configured to automatically pan to the\nposition of any point that arrives.\n",
+        "x": 2660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "0f94af908bc53d5b",
+        "type": "worldmap-tracks",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "name": "Mon voyage",
+        "depth": "10",
+        "layer": "single",
+        "smooth": false,
+        "x": 2770,
+        "y": 220,
+        "wires": [
+            [
+                "3e992f969c91f095"
+            ]
+        ]
+    },
+    {
+        "id": "3e992f969c91f095",
+        "type": "ui_worldmap",
+        "z": "e39d68b61008c9da",
+        "g": "b1f326bbcb60207d",
+        "group": "44825176ad0d422c",
+        "order": 4,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "lat": "43.61999752",
+        "lon": "7.0499998",
+        "zoom": "11",
+        "layer": "OSMC",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "deg",
+        "showgrid": "true",
+        "allowFileDrop": "false",
+        "path": "/worldmap",
+        "overlist": "DR,CO,RA,DN,TL,HM",
+        "maplist": "OSMG,OSMC,EsriC,EsriS,EsriT,EsriO,EsriDG,NatGeo,UKOS,OpTop",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 2980,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "79198f5bac072412",
+        "type": "mqtt in",
+        "z": "e39d68b61008c9da",
+        "g": "39dd4d0e760144ce",
+        "name": "mqtt.claveille.fr -- uca/iot/master/GR_A",
+        "topic": "uca/iot/master/GR_A",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "c79fb8e1553c3649",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 660,
+        "wires": [
+            [
+                "b5f99dde69e8fdad"
+            ]
+        ]
+    },
+    {
+        "id": "2e41b05fe87cf6e3",
+        "type": "mqtt in",
+        "z": "e39d68b61008c9da",
+        "g": "39dd4d0e760144ce",
+        "name": "mqtt.claveille.fr -- uca/iot/master",
+        "topic": "uca/iot/master",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "c79fb8e1553c3649",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "79dcae6256518520"
+            ]
+        ]
+    },
+    {
+        "id": "d93cb2eb9571ce27",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "g": "39dd4d0e760144ce",
+        "name": "own MQTT topic, receiving only the data of our ESP",
+        "info": "",
+        "x": 270,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "3afb9b7a10b6dfbf",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "g": "39dd4d0e760144ce",
+        "name": "general MQTT topic, receiving data of all ESPs",
+        "info": "",
+        "x": 260,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f66a5e75a5706bc4",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "g": "39dd4d0e760144ce",
+        "name": "Notice : Activate either the \"mqtt.claveille.fr\" or the \"IOT 10.0.1.58\" nodes below",
+        "info": "",
+        "x": 360,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "22f0d0ce2584f105",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "name": "Authors : Hugo CLAVEILLE, Bence DI PLACIDO & Daniel CARRIBA NOSRATI",
+        "info": "",
+        "x": 290,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0cfe111981e0683c",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "name": "GR_A",
+        "info": "",
+        "x": 70,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "cc3aa1ce95d25c44",
+        "type": "exec",
+        "z": "e39d68b61008c9da",
+        "g": "703470573e99229c",
+        "command": "python3 ./val/val.py ./temp_GR_A.json",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1390,
+        "y": 780,
+        "wires": [
+            [
+                "02494ff0c7dc5212",
+                "ea070171f028d20d"
+            ],
+            [
+                "02494ff0c7dc5212"
+            ],
+            [
+                "01b2554e6d74e089"
+            ]
+        ]
+    },
+    {
+        "id": "88d652890dd2d954",
+        "type": "file",
+        "z": "e39d68b61008c9da",
+        "g": "703470573e99229c",
+        "name": "create ./temp_GR_A.json",
+        "filename": "./temp_GR_A.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 1090,
+        "y": 780,
+        "wires": [
+            [
+                "cc3aa1ce95d25c44"
+            ]
+        ]
+    },
+    {
+        "id": "ea070171f028d20d",
+        "type": "file",
+        "z": "e39d68b61008c9da",
+        "g": "703470573e99229c",
+        "name": "remove ./temp_GR_A.json",
+        "filename": "./temp_GR_A.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "delete",
+        "encoding": "utf8",
+        "x": 1720,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cedecd8f94c32d02",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "g": "703470573e99229c",
+        "name": "Python validator, validates the received json",
+        "info": "",
+        "x": 1150,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "01b2554e6d74e089",
+        "type": "function",
+        "z": "e39d68b61008c9da",
+        "g": "703470573e99229c",
+        "name": "passThroughJsonIfValid",
+        "func": "// if the json is valid\nif (msg.payload.code === 0) {\n    // we retrieve the original payload, saved earlier before the execution of the validator\n    msg.payload = msg.original_payload;\n    return msg;\n} else {\n    return null;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 840,
+        "wires": [
+            [
+                "b7b07626c113c7f7",
                 "b35708d1f33d8683",
+                "9373bd71a23ae6ef",
                 "6ca61a944e3dbb2c"
             ]
         ]
+    },
+    {
+        "id": "b5f99dde69e8fdad",
+        "type": "function",
+        "z": "e39d68b61008c9da",
+        "g": "703470573e99229c",
+        "name": "savePayload",
+        "func": "// we save the payload (containing the received json) to use it after validation if it is valid\nmsg.original_payload = msg.payload;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 780,
+        "wires": [
+            [
+                "88d652890dd2d954"
+            ]
+        ]
+    },
+    {
+        "id": "b7b07626c113c7f7",
+        "type": "json",
+        "z": "e39d68b61008c9da",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 2050,
+        "y": 720,
+        "wires": [
+            [
+                "02494ff0c7dc5212"
+            ]
+        ]
+    },
+    {
+        "id": "7205e30b0b063124",
+        "type": "exec",
+        "z": "e39d68b61008c9da",
+        "g": "2502bb4ce939d484",
+        "command": "python3 ./val/val.py ./temp.json",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1390,
+        "y": 380,
+        "wires": [
+            [
+                "89e2564ae51106e4",
+                "590c597f162f012f"
+            ],
+            [
+                "89e2564ae51106e4"
+            ],
+            [
+                "998d432093562e62"
+            ]
+        ]
+    },
+    {
+        "id": "1bdbe6c2d811f569",
+        "type": "file",
+        "z": "e39d68b61008c9da",
+        "g": "2502bb4ce939d484",
+        "name": "create ./temp.json",
+        "filename": "./temp.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 1110,
+        "y": 380,
+        "wires": [
+            [
+                "7205e30b0b063124"
+            ]
+        ]
+    },
+    {
+        "id": "590c597f162f012f",
+        "type": "file",
+        "z": "e39d68b61008c9da",
+        "g": "2502bb4ce939d484",
+        "name": "remove ./temp.json",
+        "filename": "./temp.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "delete",
+        "encoding": "utf8",
+        "x": 1710,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "42416a88798c6d21",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "g": "2502bb4ce939d484",
+        "name": "Python validator, validates the received json",
+        "info": "",
+        "x": 1170,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "998d432093562e62",
+        "type": "function",
+        "z": "e39d68b61008c9da",
+        "g": "2502bb4ce939d484",
+        "name": "passThroughJsonIfValid",
+        "func": "// if the json is valid\nif (msg.payload.code === 0) {\n    // we retrieve the original payload, saved earlier before the execution of the validator\n    msg.payload = msg.original_payload;\n    return msg;\n} else {\n    return null;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1730,
+        "y": 440,
+        "wires": [
+            [
+                "86e4b0ad86e67de9"
+            ]
+        ]
+    },
+    {
+        "id": "79dcae6256518520",
+        "type": "function",
+        "z": "e39d68b61008c9da",
+        "g": "2502bb4ce939d484",
+        "name": "savePayload",
+        "func": "// we save the payload (containing the received json) to use it after validation if it is valid\nmsg.original_payload = msg.payload;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 380,
+        "wires": [
+            [
+                "1bdbe6c2d811f569"
+            ]
+        ]
+    },
+    {
+        "id": "86e4b0ad86e67de9",
+        "type": "json",
+        "z": "e39d68b61008c9da",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 2050,
+        "y": 380,
+        "wires": [
+            [
+                "f6ee11f246267cfb",
+                "89e2564ae51106e4"
+            ]
+        ]
+    },
+    {
+        "id": "89e2564ae51106e4",
+        "type": "debug",
+        "z": "e39d68b61008c9da",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2000,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "3bf51e46429d112a",
+        "type": "comment",
+        "z": "e39d68b61008c9da",
+        "g": "39dd4d0e760144ce",
+        "name": "you can modify the nodes, to change to another mqqt broker",
+        "info": "",
+        "x": 300,
+        "y": 320,
+        "wires": []
     },
     {
         "id": "5de3b6e4c6ab4627",
@@ -2052,6 +2831,48 @@
         "sessionExpiry": ""
     },
     {
+        "id": "44825176ad0d422c",
+        "type": "ui_group",
+        "name": "SP",
+        "tab": "d367e0334f2be122",
+        "order": 1,
+        "disp": true,
+        "width": "25",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c79fb8e1553c3649",
+        "type": "mqtt-broker",
+        "name": "mqtt.claveille.fr",
+        "broker": "mqtt.claveille.fr",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "0f98c0ed36907840",
         "type": "ui_tab",
         "name": "Regulation Info",
@@ -2097,12 +2918,21 @@
         "hidden": false
     },
     {
-        "id": "b8a520fe6de2deb1",
+        "id": "d367e0334f2be122",
+        "type": "ui_tab",
+        "name": "Tab of  Swimming Pools",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "b37b3b663ee4b80e",
         "type": "global-config",
         "env": [],
         "modules": {
             "node-red-dashboard": "3.6.6",
-            "node-red-node-serialport": "2.0.3"
+            "node-red-node-serialport": "2.0.3",
+            "node-red-contrib-web-worldmap": "5.5.4"
         }
     }
 ]

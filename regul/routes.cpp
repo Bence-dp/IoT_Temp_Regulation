@@ -218,7 +218,7 @@ void sendReportNow() {
   WiFiClient client;
   HTTPClient http;
 
-  String serverName = "http://" + esp.target_ip + ":" + String(esp.target_port) + "/esp";
+  String serverName = "http://" + esp.target_ip + ":" + String(esp.target_port) + "/esp?mac=" + WiFi.macAddress();
   // Serial.println(serverName);
   http.begin(client, serverName);
   
