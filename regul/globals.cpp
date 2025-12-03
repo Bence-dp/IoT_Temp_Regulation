@@ -35,3 +35,4 @@ String mqtt_server = "10.0.1.58";
 // String mqtt_server = "mqtt.claveille.fr";
 
 int MQTT_TIMING = 5;
+int DISTANCE = 10;

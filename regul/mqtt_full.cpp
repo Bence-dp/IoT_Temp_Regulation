@@ -71,7 +71,7 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
     USE_SERIAL.println(id);
 
     // Check distance
-    if (distance <= 10){
+    if (distance <= DISTANCE){
       if (temperature > temp_max){
         temp_max = temperature;
         id_max = id;
