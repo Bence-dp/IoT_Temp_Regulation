@@ -1,5 +1,7 @@
 #include "mqtt_full.h"
 
+#include "poolmanagement.h"
+
 
 /*===== MQTT broker/server ========*/
 // in globals.cpp
@@ -48,6 +50,23 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
     return;
   }
 
+  // Traitement commande couleur
+  if (doc["cmd"] == "color") {
+    String couleur = doc["value"];
+    USE_SERIAL.print("Commande couleur reçue: ");
+    USE_SERIAL.println(couleur);
+    if (couleur == "GREEN") {
+      set_green();
+    } else if (couleur == "YELLOW") {
+      set_yellow();
+    } else if (couleur == "RED") {
+      set_red();
+    } else {
+      USE_SERIAL.println("Couleur inconnue");
+    }
+    return;
+  }
+
 
 
   String id = doc["info"]["ident"];
@@ -82,7 +101,9 @@ void mqtt_pubcallback(char* topic, byte* payload, unsigned int length) {
     }
 
   }
-  USE_SERIAL.print("Receive Data from ourselves\n");
+  else {
+    USE_SERIAL.print("Receive Data from ourselves\n");    
+  }
   
 
 }
@@ -95,12 +116,7 @@ void check_hot_spot(){
         esp.hotspot = false;
         USE_SERIAL.println("Je ne suis pas hotspot");
       }
-      if(getLum() < 2048){
-        esp.occuped = true;
-      }
-      else {
-        esp.occuped = false;
-      }
+
 }
 
 /*============= SUBSCRIBE to TOPICS ===================*/

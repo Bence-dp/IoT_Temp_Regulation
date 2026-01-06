@@ -23,6 +23,7 @@
 #include "wifi_utils.h"
 #include "wifi_setup.h"
 #include "mqtt_full.h"
+#include "poolmanagement.h"
 
 AsyncWebServer server(80);
 
@@ -82,6 +83,7 @@ void loop() {
   
   // On vérifie s'il y a un risque d'incendie
   detectFire(temperature, luminosite);
+  check_occuped();
   
   // Update uptime (seconds since boot)
   unsigned long uptime_seconds = millis() / 1000UL;
