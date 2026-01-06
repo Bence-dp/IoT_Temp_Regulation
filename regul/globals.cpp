@@ -30,8 +30,8 @@ String MQTT_TOPIC_GR_A = "uca/iot/master/GR_A";
 // need login and passwd (public,public) mqtt://public:public@public.cloud.shiftr.io
 // String mqtt_server = "broker.hivemq.com"; // anynomous Ok in 2021 
 // String mqtt_server = "mqtt.eclipseprojects.io"; // anynomous Ok in 2021
-// String mqtt_server = "192.168.19.211";
-String mqtt_server = "10.0.1.58";
+String mqtt_server = "192.168.19.211";
+//String mqtt_server = "10.0.1.58";
 // String mqtt_server = "mqtt.claveille.fr";
 
 int MQTT_TIMING = 5;
