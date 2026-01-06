@@ -11,12 +11,12 @@ void wificonnect_multi(String hostname){
    
   WiFiMulti wm; // Creates an instance of the WiFiMulti class
   // Attention ! PAS arrivé à sortir l'instance de la fonction => heap error ! Why ???? 
-  wm.addAP("HUAWEI-6EC2", "FGY9MLBL");
-  wm.addAP("HUAWEI-553A", "QTM06RTT");
-  wm.addAP("GMAP", "vijx47050");
-  wm.addAP("IOT","iotmiage");
-  wm.addAP("Bbox-EA6814CF","Hvtx6bGfD4Sn7PCs2r");
   wm.addAP("Bence","bence004");
+  //wm.addAP("HUAWEI-6EC2", "FGY9MLBL");
+  //wm.addAP("HUAWEI-553A", "QTM06RTT");
+  //wm.addAP("GMAP", "vijx47050");
+  //wm.addAP("IOT","iotmiage");
+  //wm.addAP("Bbox-EA6814CF","Hvtx6bGfD4Sn7PCs2r");
   //wm.addAP("Daniel-iPhone-SE1","bwx327e8c17fz");
 
 
