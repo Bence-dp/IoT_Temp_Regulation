@@ -12,7 +12,7 @@ bool lowThresholdExceeded(float temp){
 
 // Mode CHAUFFAGE - il fait trop froid
 void startHeating(){
-  setColorLedRing(BLUE, 5);      // LEDs bleues = il fait froid
+  //setColorLedRing(BLUE, 5);      // LEDs bleues = il fait froid
   turnOffLed(SIMPLE_LED_GREEN);  // Éteint LED verte
   turnOnLed(SIMPLE_LED_RED);     // Allume LED rouge = chauffage actif
   setSpeedFan(0);                // Arrête le ventilateur
@@ -24,7 +24,7 @@ void startHeating(){
 void startCooling(float temp){
   turnOnLed(SIMPLE_LED_GREEN);   // Allume LED verte = ventilation active
   turnOffLed(SIMPLE_LED_RED);    // Éteint LED rouge
-  setColorLedRing(RED, 5);       // LEDs rouges = il fait chaud
+  //setColorLedRing(RED, 5);       // LEDs rouges = il fait chaud
   esp.coolerState = true;        // Marque que le refroidissement est ON
   esp.heaterState = false;       // Marque que le chauffage est OFF
   
@@ -70,7 +70,7 @@ void regulation(float temp, int lum) {
   else {
     turnOffLed(SIMPLE_LED_GREEN);  // Éteint LED verte
     turnOffLed(SIMPLE_LED_RED);    // Éteint LED rouge
-    setColorLedRing(GREEN, 5);     // LEDs vertes = tout va bien
+    //setColorLedRing(GREEN, 5);     // LEDs vertes = tout va bien
     esp.coolerState = false;       // Plus de refroidissement
     esp.heaterState = false;       // Plus de chauffage
     esp.regulationState = false;   // Régulation inactive

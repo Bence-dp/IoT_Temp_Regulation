@@ -99,5 +99,5 @@ void loop() {
 
   // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer la boucle
   // delay(esp.target_sp * 1000);
-  delay(300);
+  delay(3000);
 }
