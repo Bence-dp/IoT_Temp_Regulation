@@ -1,10 +1,13 @@
 #include "led_ring.h"
+#include "poolmanagement.h"
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(5, LED_PIN, NEO_GRB + NEO_KHZ800);
 
 void setupLED() {
-  strip.begin();           // On démarre le ruban LED
-  turnOffLedRing();        // On l'éteint au départ
+  strip.begin();
+  set_green();
+  // On démarre le ruban LED
+  //turnOffLedRing();        // On l'éteint au départ
 }
 
 void turnOffLedRing() {
