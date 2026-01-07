@@ -39,7 +39,7 @@ void check_occuped(){
         last_color = "red";
     }
     if (esp.luminosity > 4090){
-        if (last_color != "green"){
+        if (last_color == "yellow"){
             set_green();
         }
 
