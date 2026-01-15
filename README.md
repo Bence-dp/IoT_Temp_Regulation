@@ -29,7 +29,7 @@ Avec `Control Shift P` selectionner `Upload to LittleFS to Pico/ESP8266/ESP32`, 
 
 ### Validateur
 
-Un validateur JSON en Python, appelé dans Node-RED pour valider le format des JSON reçus.
+Un validateur JSON en Python, pour valider le format des JSON reçus.
 
 Pour plus d'information voir `val/README.md`.
 
@@ -37,13 +37,7 @@ Pour plus d'information voir `val/README.md`.
 
 Installez [Node-RED](https://nodered.org/).
 
-IMPORTANT : assurez-vous de vous situer dans le root du projet avant de lancer Node-RED (important pour le bon fonctionnement du validateur appelé par Node-RED).
-
-```
-[...]/IoT_Temp_Regulation $
-```
-
-Dans le root du projet lancer Node-RED :
+Lancer Node-RED :
 
 ```bash
 node-red
@@ -54,8 +48,6 @@ Importez `regul.json`.
 Vous pouvez activer/désactiver les noeuds des groupes `MQTT`, `HTTP` et `Serial` pour changer le protocole utilisé pour récupérer les données de la carte ESP32. 
 
 Pour les noeuds du groupe `MQTT` vous pouvez activer/désactiver ou modifier des noeuds pour changer de broker MQTT.
-
-
 
 Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port de votre ESP32, et pour Baud Rate la valeur 9600.
 
@@ -92,7 +84,6 @@ Pour les noeuds `serial in` et `serial out` choisissez pour Serial Port le port 
 
 - Validateur JSON en python à l'aide de la librairie `jsonschema`
 - Fichiers tests (examples)
-- Est appelé dans Node-RED pour valider le format des JSON reçus.
 
 ### Node-RED
 
