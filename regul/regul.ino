@@ -99,5 +99,14 @@ void loop() {
 
   // On attend le temps donné par l'utilisateur (Sampling Period) avant de recommencer la boucle
   // delay(esp.target_sp * 1000);
-  delay(3000);
+  // delay(3000);
+  
+  // Ensure MQTT is connected and process network events
+  if (!mqttclient.connected()) {
+    // try to (re)connect and subscribe
+    mqtt_subscribe_mytopics();
+  } else {
+    // let the client maintain keepalive and process callbacks
+    mqttclient.loop();
+  }
 }
